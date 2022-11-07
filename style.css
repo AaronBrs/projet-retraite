@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+*{
+    background-color: #E6E6FA;
+    font-family: 'Poppins', sans-serif;
+
+    
+}
+.boutonAccueil{
+    margin: 5px;
+    text-align: center;
+    font-weight: bolder;
+    width: 200px;
+    padding : 15px;
+    border-radius: 20px;
+    background-color: #0474BC;
+    color: #FCBC04;
+    text-transform: uppercase;
+    transition: all linear 0.2s;
+    cursor: pointer;
+    border: solid #0474BC 2px ;
+}
+.boutonAccueil:hover{
+    border: solid #FCBC04 2px ;
+    background-color: #0474BCEE;
+
+}
+#assuRetraite{
+    position: fixed;
+    width: 200px;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+}

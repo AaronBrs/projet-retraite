@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Mon simulateur d'assurance retraite</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js"></script>
+    </head>
+
+    <body>
+        <h1>Formulaire</h1>
+        <form id="formRetraite">
+            <div id="partie1">
+                <label for="nom">Nom :</label><br>
+                <input type="text" id="nom" name="nom"><br>
+                <label for="prenom">Prénom :</label><br>
+                <input type="text" id="prenom" name="prenom"><br>
+                <span>Genre :</span><br>
+                    <input type="radio" id="genreHomme" name="genre" value="Homme">
+                    <label for="genreHomme">Homme</label><br>
+                    <input type="radio" id="genreFemme" name="genre" value="Femme">
+                    <label for="genreFemme">Femme</label><br>
+
+                <label for="datenaissance">Date de naissance :</label><br>
+                <input type="date" id="datenaissance" name="datenaissance"><br>
+            </div>
+            <div id="partie2">
+                <p>Vous avez besoin de valider 168 trimestres pour partir à taux plein</p>
+                <label for="nbtrimestres">Nombre de trimestres déjà validés:</label><br>
+                <input type="number" id="nbtrimestres" name="nbtrimestres"><br><br>
+            </div>
+            <p>Il vous faut encore valider X trimestres !</p>
+            <div> Bouton Suivant </div>
+            <div id="partie3">
+                <label for="nbenfants">Nombre d'enfants élevés :</label>   <span style="color: red;">TODO : ajouter un bouton info</span><br>
+                <input type="number" id="nbenfants" name="nbenfants"><br>
+                <label for="nbenfants">Nombre d'enfants mis au monde :</label>   <span style="color: red;">TODO : afficher que pour les femmes</span><br>
+                <input type="number" id="nbenfants" name="nbenfants"><br>
+            </div>
+            
+            
+            
+            <p>Veuillez!</p>
+            <input type="submit" value="Connexion">
+        </form>
+    </body>
+</html>
