@@ -35,3 +35,24 @@
     justify-items: center;
     align-items: center;
 }
+
+
+.boutonRetour{
+    margin: 5px;
+    text-align: center;
+    font-weight: bolder;
+    width: 200px;
+    padding : 15px;
+    border-radius: 20px;
+    background-color: #0474BC;
+    color: white;
+    text-transform: uppercase;
+    transition: all linear 0.2s;
+    cursor: pointer;
+    border: solid #0474BC 2px ;
+}
+.boutonRetour:hover{
+    border: solid white 2px ;
+    background-color: #0474BCEE;
+
+}
