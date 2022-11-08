@@ -91,6 +91,7 @@ tabRevalo.set(1946,1668.841);
 var agePlusTot;
 var trimestresRequis;
 var ageAutoTauxPlein;
+var trimestresTotaux
 
 function convertirFrancEuro(salaire){
     return salaire*0.152449;
@@ -352,6 +353,14 @@ function decoteAge(dateRetraite, dateNaissance){
         return (this.ageAutoTauxPlein-ageRetraite)*4*0.625;
     }
     return 0;
+}
+
+function enfantNe(nbEnfant){
+    this.trimestresTotaux = this.trimestresTotaux + nbEnfant*4;
+}
+
+function enfantEleve(nbEnfant){
+    this.trimestresTotaux = this.trimestresTotaux + nbEnfant*4;
 }
 
 
