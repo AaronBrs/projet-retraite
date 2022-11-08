@@ -91,6 +91,7 @@ tabRevalo.set(1946,1668.841);
 var agePlusTot;
 var trimestresRequis;
 var ageAutoTauxPlein;
+var trimestresTotaux
 
 function convertirFrancEuro(salaire){
     return salaire*0.152449;
@@ -356,6 +357,14 @@ function decoteAge(dateRetraite, dateNaissance){
     return 0;
 }
 
+function enfantNe(nbEnfant){
+    this.trimestresTotaux = this.trimestresTotaux + nbEnfant*4;
+}
+
+function enfantEleve(nbEnfant){
+    this.trimestresTotaux = this.trimestresTotaux + nbEnfant*4;
+}
+
 
 // tests
 //console.log(convertirFrancEuro(4000));
@@ -366,4 +375,4 @@ function decoteAge(dateRetraite, dateNaissance){
 //console.log('.... ' + this.agePlusTot);
 //console.log(decoteTrimestresManquants(166));
 //console.log(decoteAge(new Date(2021,3,1), new Date(1955,11,15)));
-//console.log(calculTaux(156, new Date(1955,11,15), new Date(2021,3,1)));
+//console.log(calculTaux(166, new Date(1955,11,15), new Date(2021,3,1)));
