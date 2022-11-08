@@ -104,6 +104,47 @@ function revaloriser(annee, salaire){
 
 // fonction calcul SAM : parcours de la liste -> si FRF -> conversion euro puis revalo sinon revalo directement, faire la somme
 // de tous les résultats
+var tabSalaires = document.getElementsByClassName("lesSalaires")
+var tabUnites = document.getElementsByClassName("lesUnites")
+var tabSalaireReel = [];
+var tab25Salaires = [];
+
+function calculerSalaireReel(tabSalaires,tabUnites){
+    for(let i= 0; i<tabSalaires.length;i++){
+        if(tabUnites[i] == "EUR"){
+           tabSalaireReel.push(revaloriser(tabSalaires[i]));
+           //tabSalaireReel[i] = revaloriser(tabSalaires[i]));
+    
+        }
+        else if( tabUnites[i] == "FRF"){
+            var salaireConverti = convertirFrancEuro(tabSalaires[i]);
+            tabSalaireReel.push(revaloriser(salaireConverti));            //tabSalaireReel[i] = revaloriser(salaireConverti));
+
+        }
+    }
+}
+function numAverage(a) {
+    var b = a.length,
+        c = 0, i;
+    for (i = 0; i < b; i++){
+      c += Number(a[i]);
+    }
+    return c/b;
+  }
+
+function calculerSAM(tabSalaireReel ){
+    var tabTrier = tabSalaireReel.sort(function(a,b){return b-a});;
+    console.log(tabTrier)
+    for(let i=0; i < 5; i++ ){
+        tab25Salaires.push(tabTrier[i]); 
+        
+    }
+    console.log(tab25Salaires)
+    return numAverage(tab25Salaires);
+
+}
+
+var tabcaca = [2,3,4,8,1,2,3,4,8,1,2,3,4,8,1,2,3,4,8,1,2,3,4,8,1,2,3,4,8,1,2,3,4,8,12,3,4,8,1]
 
 
 function calculTauxPlein(dateNaissance){
