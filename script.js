@@ -172,11 +172,57 @@ function calculTauxPlein(dateNaissance){
     }
 }
 
-/*function TauxPleinCarriereLongue(dateNaissance, trimestres20A, trimestres16A){
-    if(dateNaissance =)
-}*/
+function tauxPleinCarriereLongue(dateNaissance, trimestres20A, trimestres16A, dureeCotis){
+    if(dateNaissance.getFullYear() == 1957){
+        if(trimestres16A >= 5){
+            if(dureeCotis >= 174){
+                agePlusTot = 57;
+            }
+            else if(dureeCotis >= 166){
+                agePlusTot = 59.66;
+            }
+        }
+        else if(trimestres20A >= 5 && dureeCotis >= 166){
+            agePlusTot = 60;
+        }
+    }
+    else if(dateNaissance.getFullYear() == 1958){
+        if(trimestres16A >= 5 && dureeCotis >= 175){
+            agePlusTot = 57.33;
+        }
+        else if(trimestres20A >= 5 && dureeCotis >= 167){
+            agePlusTot = 60;
+        }
+    }
+    else if(dateNaissance.getFullYear() == 1959){
+        if(trimestres16A >= 5 && dureeCotis >= 175){
+            agePlusTot = 57.66;
+        }
+        else if(trimestres20A >= 5 && dureeCotis >= 167){
+            agePlusTot = 60;
+        }
+    }
+    else if(dateNaissance.getFullYear() == 1960){
+        if(trimestres16A >= 5 && dureeCotis >= 175){
+            agePlusTot = 58;
+        }
+        else if(trimestres20A >= 5 && dureeCotis >= 167){
+            agePlusTot = 60;
+        }
+    }
+    else if(1961<= dateNaissance.getFullYear() <= 1963){
+        if(trimestres16A >= 5 && dureeCotis >= 176){
+            agePlusTot = 58;
+        }
+        else if(trimestres20A >= 5 && dureeCotis >= 168){
+            agePlusTot = 60;
+        }
+    }
+}
 
 console.log(convertirFrancEuro(4000));
 console.log(revaloriser(2014,1789));
 calculTauxPlein(new Date(1952,11,25));
 console.log(this.agePlusTot + ', ' + this.trimestresRequis + ', ' + this.ageAutoTauxPlein);
+tauxPleinCarriereLongue(new Date(1959,11,25),8,5,180)
+console.log('.... ' + this.agePlusTot);
