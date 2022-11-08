@@ -143,6 +143,7 @@ function calculerSAM(tabSalaireReel ){
     }
     console.log(tab25Salaires)
     return numAverage(tab25Salaires);
+
 }
 
 
