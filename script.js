@@ -106,58 +106,59 @@ function revaloriser(annee, salaire){
 // de tous les résultats
 
 
-function calculTauxPlein(dateNaissance, trimestres){
-    if (dateNaissance.year >= 1973){
+function calculTauxPlein(dateNaissance){
+    console.log(dateNaissance.getFullYear());
+    if (dateNaissance.getFullYear() >= 1973){
         agePlusTot = 62;
         trimestresRequis = 172;
         ageAutoTauxPlein = 67;
     }
-    else if (dateNaissance.year >= 1970){
+    else if (dateNaissance.getFullYear() >= 1970){
         agePlusTot = 62;
         trimestresRequis = 171;
         ageAutoTauxPlein = 67;
     }
-    else if (dateNaissance.year >= 1967){
+    else if (dateNaissance.getFullYear() >= 1967){
         agePlusTot = 62;
         trimestresRequis = 170;
         ageAutoTauxPlein = 67;
     }
-    else if (dateNaissance.year >= 1964){
+    else if (dateNaissance.getFullYear() >= 1964){
         agePlusTot = 62;
         trimestresRequis = 169;
         ageAutoTauxPlein = 67;
     }
-    else if (dateNaissance.year >= 1961){
+    else if (dateNaissance.getFullYear() >= 1961){
         agePlusTot = 62;
         trimestresRequis = 168;
         ageAutoTauxPlein = 67;
     }
-    else if (dateNaissance.year >= 1958){
+    else if (dateNaissance.getFullYear() >= 1958){
         agePlusTot = 62;
         trimestresRequis = 167;
         ageAutoTauxPlein = 67;
     }
-    else if (dateNaissance.year >= 1955){
+    else if (dateNaissance.getFullYear() >= 1955){
         agePlusTot = 62;
         trimestresRequis = 166;
         ageAutoTauxPlein = 67;
     }
-    else if (dateNaissance.year == 1954){
+    else if (dateNaissance.getFullYear() == 1954){
         agePlusTot = 61.583;
         trimestresRequis = 165;
         ageAutoTauxPlein = 66.583;
     }
-    else if (dateNaissance.year == 1953){
+    else if (dateNaissance.getFullYear() == 1953){
         agePlusTot = 61.167;
         trimestresRequis = 165;
         ageAutoTauxPlein = 66.167;
     }
-    else if (dateNaissance.year == 1952){
-        agePlusTot = 60.75;
-        trimestresRequis = 164;
-        ageAutoTauxPlein = 65.75;
+    else if (dateNaissance.getFullYear() == 1952){
+        this.agePlusTot = 60.75;
+        this.trimestresRequis = 164;
+        this.ageAutoTauxPlein = 65.75;
     }
-    else if (dateNaissance.year == 1951){
+    else if (dateNaissance.getFullYear() == 1951){
         if(dateNaissance.month >= 7){
             agePlusTot = 60.33;
             trimestresRequis = 163;
@@ -168,11 +169,14 @@ function calculTauxPlein(dateNaissance, trimestres){
             trimestresRequis = 163;
             ageAutoTauxPlein = 65;
         }
-
     }
-
-
 }
+
+/*function TauxPleinCarriereLongue(dateNaissance, trimestres20A, trimestres16A){
+    if(dateNaissance =)
+}*/
 
 console.log(convertirFrancEuro(4000));
 console.log(revaloriser(2014,1789));
+calculTauxPlein(new Date(1952,11,25));
+console.log(this.agePlusTot + ', ' + this.trimestresRequis + ', ' + this.ageAutoTauxPlein);
