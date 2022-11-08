@@ -323,4 +323,4 @@ function decoteAge(dateRetraite, dateNaissance){
 //console.log('.... ' + this.agePlusTot);
 //console.log(decoteTrimestresManquants(166));
 //console.log(decoteAge(new Date(2021,3,1), new Date(1955,11,15)));
-//console.log(calculTaux(156, new Date(1955,11,15), new Date(2021,3,1)));
+//console.log(calculTaux(166, new Date(1955,11,15), new Date(2021,3,1)));
