@@ -123,6 +123,7 @@ function calculerSalaireReel(tabSalaires,tabUnites){
         }
     }
 }
+
 function moyenne(a) {
     var b = a.length,
         c = 0, i;
@@ -141,8 +142,9 @@ function calculerSAM(tabSalaireReel ){
     }
     console.log(tab25Salaires)
     return numAverage(tab25Salaires);
-
 }
+
+
 
 var tabcaca = [2,3,4,8,1,2,3,4,8,1,2,3,4,8,1,2,3,4,8,1,2,3,4,8,1,2,3,4,8,1,2,3,4,8,12,3,4,8,1]
 
