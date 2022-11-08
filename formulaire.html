@@ -1,49 +1,102 @@
 <!DOCTYPE html>
 <html>
+
     <head>
         <title>Mon simulateur d'assurance retraite</title>
         <link rel="stylesheet" href="style.css">
-        <script src="script.js"></script>
-        <script src="scriptFront.js"></script>
     </head>
 
     <body>
-        <h1>Formulaire</h1>
-        <form id="formRetraite">
-            <div id="partie1">
-                <label for="nom">Nom :</label><br>
-                <input type="text" id="nom" name="nom"><br>
-                <label for="prenom">Prénom :</label><br>
-                <input type="text" id="prenom" name="prenom"><br>
-                <span>Genre :</span><br>
-                    <input type="radio" id="genreHomme" name="genre" value="Homme">
-                    <label for="genreHomme">Homme</label><br>
-                    <input type="radio" id="genreFemme" name="genre" value="Femme">
-                    <label for="genreFemme">Femme</label><br>
+        
+        <div class="wrapper">
+            <div class="title">Formulaire</div>
+            <div class="form">
+                <div id="partie1">
+                    <div class="inputfield">
+                        <label for="nom">Nom</label>
+                        <input id="nom" type="text" class="input">
+                    </div>
+                    <div class="inputfield">
+                        <label for="prenom">Prénom</label>
+                        <input id="prenom" type="text" class="input">
+                    </div>
+                    <div class="inputfield">
+                        <label>Genre</label><br>
+                        <input type="radio" id= "genreHomme" name="genre" value="Homme">
+                        <label for="genreHomme">Homme</label><br>
+                        <input type="radio" id="genreFemme" name="genre" value="Femme">
+                        <label for="genreFemme">Femme</label><br>
+                     </div>
+                     <div class="inputfield">
+                        <label for="dateNaissance">Date de naissance</label>
+                        <input id="dateNaissance" type="date" class="input">
+                    </div>
+                </div>
 
-                <label for="datenaissance">Date de naissance :</label><br>
-                <input type="date" id="datenaissance" name="datenaissance"><br>
+                <div id="btnPartie2" onclick="displayPartie2()" class="boutonFormulaire">Suivant</div>
+                <br>    
+                <div id="partie2">
+                    <div class="inputfield">
+                        <label for="nbTrimestresValides">Nombre de trimestres déjà validés</label>
+                        <input id="nbTrimestresValides" name="nbTrimestresValides" type="number" class="input">
+                    </div>
+                    <div class="inputfield">
+                        <label for="nbTrimestresValidesAvantAge20">Nombre de trimestres déjà validés avant 20 ans</label>
+                        <input id="nbTrimestresValidesAvantAge20" name="nbTrimestresValidesAvantAge20" type="number" class="input">
+                    </div>
+                    <div class="inputfield">
+                        <label for="nbTrimestresValidesAvantAge16">Nombre de trimestres déjà validés avant 16 ans</label>
+                        <input id="nbTrimestresValidesAvantAge16" name="nbTrimestresValidesAvantAge16" type="number" class="input">
+                    </div>
+                    <div class="inputfield">
+                        <label for="nbEnfantsMisAuMonde">Nombre d'enfants nés :</label>   <span style="color: red;">TODO : afficher que pour les femmes</span><br>
+                        <input type="number" id="nbEnfantsMisAuMonde" name="nbEnfantsEleves" class="input"><br>
+                    </div>
+                    <div class="inputfield">
+                        <label for="nbEnfantsEleves">Nombre d'enfants élevés :</label>
+                        <input type="number" id="nbEnfantsEleves" name="nbEnfantsEleves" class="input"><br>
+                    </div>
+                    <div class="inputfield terms">
+                        <label class="check">
+                          <input type="checkbox">
+                          <span class="checkmark"></span>
+                        </label>
+                        <p>Je suis en situation de handicap</p>
+                    </div> 
+                    <div class="inputfield">
+                        <label for="nbTrimestresHandicap">Nombre de trimestres au titre du handicap :</label>
+                        <input type="number" id="nbTrimestresHandicap" name="nbTrimestresHandicap" class="input"><br>
+                    </div>
+                </div>
             </div>
-            <div id="partie2">
-                <p>Vous avez besoin de valider 168 trimestres pour partir à taux plein</p>
-                <label for="nbtrimestres">Nombre de trimestres déjà validés:</label><br>
-                <input type="number" id="nbtrimestres" name="nbtrimestres"><br><br>
-            </div>
+            <div onclick="recupDonnees()" class="boutonFormulaire">Valider</div>
+            <div onclick="location.href='index.html';" class="boutonFormulaire">Retour</div>
+        </div>
+            <!-- 
             <p>Il vous faut encore valider X trimestres !</p>
-            <div> Bouton Suivant </div>
-            <div id="partie3">
-                <label for="nbenfants">Nombre d'enfants élevés :</label>   <span style="color: red;">TODO : ajouter un bouton info</span><br>
-                <input type="number" id="nbenfants" name="nbenfants"><br>
-                <label for="nbenfants">Nombre d'enfants mis au monde :</label>   <span style="color: red;">TODO : afficher que pour les femmes</span><br>
-                <input type="number" id="nbenfants" name="nbenfants"><br>
-            </div>
-            
-            
-            
-            <p>Veuillez!</p>
             <input type="submit" value="Connexion">
-
-            <div onclick="location.href='index.html';" class="boutonRetour">Retour</div>
-        </form>
+                    <div class="inputfield">
+                        <label>Password</label>
+                        <input type="password" class="input">
+                    </div>
+                    <div class="inputfield">
+                        <label>Gender</label>
+                        <div class="custom_select">
+                            <select>
+                                <option value="">Select</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+                    </div> 
+                    <div class="inputfield">
+                        <label>Address</label>
+                        <textarea class="textarea"></textarea>
+                    </div>
+                -->
+                
     </body>
+    
+    <script src="script.js"></script>
+    <script src="scriptFront.js"></script>
 </html>
