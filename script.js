@@ -274,11 +274,53 @@ function tauxPleinHandicap(dateNaissance, dureeTotaleAssu, dureeCotis){
     }
 }
 
+function calculTaux(dureeCotis, dateNaissance, dateRetraite){
+    var decoteTrimestre = decoteTrimestresManquants(dureeCotis);
+    if(decoteTrimestre>0){
+        var decotAge = decoteAge(dateRetraite, dateNaissance);
+        if (decoteTrimestre>decotAge){
+            var taux = 50-decotAge;
+            if(taux < 37.5){
+                return 37.5;
+            }
+            return taux;
+        }
+        var taux2 = 50-decoteTrimestre;
+        if(taux2 < 37.5){
+            return 37.5;
+        }
+        return taux2;
+    }
+    return 50;
+}
+
+function decoteTrimestresManquants(dureeCotis){
+    var trimestresManquants = this.trimestresRequis-dureeCotis;
+    if (trimestresManquants > 0){
+        return trimestresManquants*0.625;
+    }
+    return 0;
+}
+
+function decoteAge(dateRetraite, dateNaissance){
+    var diff = dateRetraite.getTime() - dateNaissance.getTime();
+    var age = new Date(diff);
+    var ageRetraite = Math.abs(age.getUTCFullYear() - 1970) + Math.abs(age.getUTCMonth()*10/120);
+    console.log(ageRetraite);
+    if (ageRetraite < this.ageAutoTauxPlein){
+        return (this.ageAutoTauxPlein-ageRetraite)*4*0.625;
+    }
+    return 0;
+}
+
 
 // tests
-console.log(convertirFrancEuro(4000));
-console.log(revaloriser(2014,1789));
-calculTauxPlein(new Date(1952,11,25));
-console.log(this.agePlusTot + ', ' + this.trimestresRequis + ', ' + this.ageAutoTauxPlein);
-tauxPleinCarriereLongue(new Date(1959,11,25),8,5,180)
-console.log('.... ' + this.agePlusTot);
+//console.log(convertirFrancEuro(4000));
+//console.log(revaloriser(2014,1789));
+//calculTauxPlein(new Date(1952,11,25));
+//console.log(this.agePlusTot + ', ' + this.trimestresRequis + ', ' + this.ageAutoTauxPlein);
+//tauxPleinCarriereLongue(new Date(1959,11,25),8,5,180)
+//console.log('.... ' + this.agePlusTot);
+//console.log(decoteTrimestresManquants(166));
+//console.log(decoteAge(new Date(2021,3,1), new Date(1955,11,15)));
+//console.log(calculTaux(156, new Date(1955,11,15), new Date(2021,3,1)));
