@@ -123,7 +123,7 @@ function calculerSalaireReel(tabSalaires,tabUnites){
         }
     }
 }
-function numAverage(a) {
+function moyenne(a) {
     var b = a.length,
         c = 0, i;
     for (i = 0; i < b; i++){
@@ -135,7 +135,7 @@ function numAverage(a) {
 function calculerSAM(tabSalaireReel ){
     var tabTrier = tabSalaireReel.sort(function(a,b){return b-a});;
     console.log(tabTrier)
-    for(let i=0; i < 5; i++ ){
+    for(let i=0; i < 25; i++ ){
         tab25Salaires.push(tabTrier[i]); 
         
     }
