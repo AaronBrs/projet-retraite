@@ -7,7 +7,6 @@
     </head>
 
     <body>
-        
         <div class="wrapper">
             <div class="title">Formulaire</div>
             <div class="form">
@@ -32,9 +31,9 @@
                         <input id="dateNaissance" type="date" class="input">
                     </div>
                 </div>
-
+                <br>
                 <div id="btnPartie2" onclick="displayPartie2()" class="boutonFormulaire">Suivant</div>
-                <br>    
+                <br>
                 <div id="partie2">
                     <div class="inputfield">
                         <label for="nbTrimestresValides">Nombre de trimestres déjà validés</label>
@@ -62,39 +61,62 @@
                           <span class="checkmark"></span>
                         </label>
                         <p>Je suis en situation de handicap</p>
-                    </div> 
+                    </div>
                     <div class="inputfield">
                         <label for="nbTrimestresHandicap">Nombre de trimestres au titre du handicap :</label>
                         <input type="number" id="nbTrimestresHandicap" name="nbTrimestresHandicap" class="input"><br>
                     </div>
                 </div>
+                <br>
+                <div id="btnPartie3" onclick="displayPartie3()" class="boutonFormulaire">Suivant</div>
+                <br>
+                <div id="partie3">
+                    <table class="tableSalaires" width = "100%">
+                        <thead>
+                            <tr>
+                                <td>Année</td>
+                                <td>Revenu</td>
+                                <td>Unité</td>
+                                <td>Revenu réel</td>
+                           </tr>
+                        </thead>
+
+                        <tbody id="aRemplir">
+                            <tr>
+                                <td>
+                                    <div class="inputfield">
+                                        <input type="number" min="1920" max="2025" step="1"  class="lesAnnees input">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="inputfield">
+                                        <input type="number" min="0.00" max="1000000.00" step="0.01" class="lesSalaires input">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="inputfield">
+                                        <div class="custom_select lesUnites">
+                                            <select>
+                                                <option value="EUR" selected>EUR</option>
+                                                <option value="FRF">FRF</option>
+                                            </select>
+                                        </div>
+                                    </div> 
+                                </td>
+                                <td>
+                                    <div class="revenuReel lesSalairesReels">
+                                        <span> A Calculer quand appui btn + </span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="btnNouvelleLigne" onclick="nouvelleLigne()" class="boutonFormulaire">+</div>
             </div>
             <div onclick="recupDonnees()" class="boutonFormulaire">Valider</div>
             <div onclick="location.href='index.html';" class="boutonFormulaire">Retour</div>
-        </div>
-            <!-- 
-            <p>Il vous faut encore valider X trimestres !</p>
-            <input type="submit" value="Connexion">
-                    <div class="inputfield">
-                        <label>Password</label>
-                        <input type="password" class="input">
-                    </div>
-                    <div class="inputfield">
-                        <label>Gender</label>
-                        <div class="custom_select">
-                            <select>
-                                <option value="">Select</option>
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                            </select>
-                        </div>
-                    </div> 
-                    <div class="inputfield">
-                        <label>Address</label>
-                        <textarea class="textarea"></textarea>
-                    </div>
-                -->
-                
+        </div>  
     </body>
     
     <script src="script.js"></script>
