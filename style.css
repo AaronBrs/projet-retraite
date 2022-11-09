@@ -33,7 +33,7 @@
 #partie1, #partie2, #partie3{
   width: 100%;
 }
-#btnPartie3{
+#btnPartie3, #btnNouvelleLigne{
   display: none;
 }
 .boutonFormulaire{
@@ -214,12 +214,32 @@
     flex-direction: row;
   }
 }
-.listeUnites{
-  width: 75px;
-}
+
 .tableSalaires{
   text-align: center;
 }
+
 .tableSalaires tr td:nth-child(1){
+  width: 10%;
+}
+.lesAnnees{
+  width: 100%;
+}
+.tableSalaires tr td:nth-child(2){
   width: 15%;
+}
+.lesSalaires{
+  width: 100%;
+}
+.tableSalaires tr td:nth-child(3){
+  width: 5%;
+}
+.lesUnites{
+  width: 100%;
+}
+.tableSalaires tr td:nth-child(4){
+  width: 15%;
+}
+.lesSalairesReels{
+  width: 100%;
 }
