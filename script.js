@@ -63,35 +63,78 @@ tabRevalo.set(1963,16.68);
 tabRevalo.set(1962,18.688);
 tabRevalo.set(1961,21.678);
 tabRevalo.set(1960,24.932);
-tabRevalo.set(1959,26.851);
-tabRevalo.set(1958,29.672);
-tabRevalo.set(1957,33.683);
-tabRevalo.set(1956,36.212);
-tabRevalo.set(1955,40.563);
-tabRevalo.set(1954,44.01);
-tabRevalo.set(1953,47.096);
-tabRevalo.set(1952,47.751);
-tabRevalo.set(1951,57.306);
-tabRevalo.set(1950,80.756);
-tabRevalo.set(1949,92.055);
-tabRevalo.set(1948,108.91);
-tabRevalo.set(1947,155.992);
-tabRevalo.set(1936,30406.871);
-tabRevalo.set(1937,21295.862);
-tabRevalo.set(1938,19313.500);
-tabRevalo.set(1939,17732.662);
-tabRevalo.set(1940,17732.662);
-tabRevalo.set(1941,11826.912);
-tabRevalo.set(1942,7600);
-tabRevalo.set(1943,7600);
-tabRevalo.set(1944,6138.862);
-tabRevalo.set(1945,2027.358);
-tabRevalo.set(1946,1668.841);
+
+//init tableau des PSS
+var tabPlafond = new Map();
+tabPlafond.set(2022,41136);
+tabPlafond.set(2021,41136);
+tabPlafond.set(2020,41136);
+tabPlafond.set(2019,40524);
+tabPlafond.set(2018,39732);
+tabPlafond.set(2017,39228);
+tabPlafond.set(2016,38616);
+tabPlafond.set(2015,38040);
+tabPlafond.set(2014,37548);
+tabPlafond.set(2013,37032);
+tabPlafond.set(2012,36372);
+tabPlafond.set(2011,35352);
+tabPlafond.set(2010,34620);
+tabPlafond.set(2009,34308);
+tabPlafond.set(2008,33276);
+tabPlafond.set(2007,32184);
+tabPlafond.set(2006,31068);
+tabPlafond.set(2005,30192);
+tabPlafond.set(2004,29712);
+tabPlafond.set(2003,29184);
+tabPlafond.set(2002,28224);
+//Passage aux FRF
+tabPlafond.set(2001,179400);
+tabPlafond.set(2000,176400);
+tabPlafond.set(1999,173640);
+tabPlafond.set(1998,169080);
+tabPlafond.set(1997,164640);
+tabPlafond.set(1996,161220);
+tabPlafond.set(1995,155940);
+tabPlafond.set(1994,153120);
+tabPlafond.set(1993,149820);
+tabPlafond.set(1992,144120);
+tabPlafond.set(1991,137760);
+tabPlafond.set(1990,131040);
+tabPlafond.set(1989,125280);
+tabPlafond.set(1988,120360);
+tabPlafond.set(1987,116820);
+tabPlafond.set(1986,112200);
+tabPlafond.set(1985,106740);
+tabPlafond.set(1984,99600);
+tabPlafond.set(1983,91680);
+tabPlafond.set(1982,82020);
+tabPlafond.set(1981,68760);
+tabPlafond.set(1980,60120);
+tabPlafond.set(1979,53640);
+tabPlafond.set(1978,48000);
+tabPlafond.set(1977,43320);
+tabPlafond.set(1976,37920);
+tabPlafond.set(1975,33000);
+tabPlafond.set(1974,27840);
+tabPlafond.set(1973,24480);
+tabPlafond.set(1972,21960);
+tabPlafond.set(1971,19800);
+tabPlafond.set(1970,18000);
+tabPlafond.set(1969,16320);
+tabPlafond.set(1968,14400);
+tabPlafond.set(1967,13680);
+tabPlafond.set(1966,12960);
+tabPlafond.set(1965,12240);
+tabPlafond.set(1964,11400);
+tabPlafond.set(1963,10440);
+tabPlafond.set(1962,9600);
+tabPlafond.set(1961,8100);
+tabPlafond.set(1960,6840);
 
 var agePlusTot;
 var trimestresRequis;
 var ageAutoTauxPlein;
-var trimestresTotaux
+var trimestresTotaux;
 
 function convertirFrancEuro(salaire){
     return salaire*0.152449;
@@ -101,28 +144,38 @@ function revaloriser(annee, salaire){
     return tabRevalo.get(annee)*salaire;
 }
 
-
-
 // fonction calcul SAM : parcours de la liste -> si FRF -> conversion euro puis revalo sinon revalo directement, faire la somme
 // de tous les résultats
-var tabSalaires = document.getElementsByClassName("lesSalaires")
-var tabUnites = document.getElementsByClassName("lesUnites")
+var tabSalaires = document.getElementsByClassName("lesSalaires");
+var tabUnites = document.getElementsByClassName("lesUnites");
+var tabAnnees = document.getElementsByClassName("lesAnnees");
 var tabSalaireReel = [];
 var tab25Salaires = [];
 
 function calculerSalaireReel(tabSalaires,tabUnites){
     for(let i= 0; i<tabSalaires.length;i++){
         if(tabUnites[i] == "EUR"){
-           tabSalaireReel.push(revaloriser(tabSalaires[i]));
+            if(tabSalaires[i]<= this.tabPlafond.get(tabAnnees[i])){
+                tabSalaireReel.push(revaloriser(tabSalaires[i]));
+            }
+            else {
+                tabSalaireReel.push(revaloriser(this.tabPlafond.get(tabAnnees[i])));
+            }
            //tabSalaireReel[i] = revaloriser(tabSalaires[i]));
     
         }
         else if( tabUnites[i] == "FRF"){
-            var salaireConverti = convertirFrancEuro(tabSalaires[i]);
+            var salaireConverti;
+            if(tabSalaires[i]<= this.tabPlafond.get(tabAnnees[i])){
+                salaireConverti = convertirFrancEuro(tabSalaires[i]);
+            }
+            else {
+                salaireConverti = this.tabPlafond.get(tabAnnees[i]);
+            }
             tabSalaireReel.push(revaloriser(salaireConverti));            //tabSalaireReel[i] = revaloriser(salaireConverti));
-
         }
     }
+    console.log(tabSalaireReel);
 }
 
 function moyenne(a) {
@@ -135,14 +188,14 @@ function moyenne(a) {
   }
 
 function calculerSAM(tabSalaireReel ){
-    var tabTrier = tabSalaireReel.sort(function(a,b){return b-a});;
-    console.log(tabTrier)
+    var tabTrier = tabSalaireReel.sort(function(a,b){return b-a});
+    console.log(tabTrier);
     for(let i=0; i < 25; i++ ){
         tab25Salaires.push(tabTrier[i]); 
         
     }
     console.log(tab25Salaires)
-    return numAverage(tab25Salaires);
+    return moyenne(tab25Salaires);
 
 }
 
