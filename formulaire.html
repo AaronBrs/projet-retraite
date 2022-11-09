@@ -48,8 +48,8 @@
                         <input id="nbTrimestresValidesAvantAge16" name="nbTrimestresValidesAvantAge16" type="number" class="input">
                     </div>
                     <div class="inputfield">
-                        <label for="nbEnfantsMisAuMonde">Nombre d'enfants nés :</label>   <span style="color: red;">TODO : afficher que pour les femmes</span><br>
-                        <input type="number" id="nbEnfantsMisAuMonde" name="nbEnfantsEleves" class="input"><br>
+                        <label for="nbEnfantsNes">Nombre d'enfants nés :</label>   <span style="color: red;">TODO : afficher que pour les femmes</span><br>
+                        <input type="number" id="nbEnfantsNes" name="nbEnfantsNes" class="input"><br>
                     </div>
                     <div class="inputfield">
                         <label for="nbEnfantsEleves">Nombre d'enfants élevés :</label>
@@ -57,7 +57,7 @@
                     </div>
                     <div class="inputfield terms">
                         <label class="check">
-                          <input type="checkbox">
+                          <input id = "situationHandicap" type="checkbox">
                           <span class="checkmark"></span>
                         </label>
                         <p>Je suis en situation de handicap</p>
@@ -77,7 +77,6 @@
                                 <td>Année</td>
                                 <td>Revenu</td>
                                 <td>Unité</td>
-                                <td>Revenu réel</td>
                            </tr>
                         </thead>
 
@@ -95,18 +94,13 @@
                                 </td>
                                 <td>
                                     <div class="inputfield">
-                                        <div class="custom_select lesUnites">
-                                            <select>
+                                        <div class="custom_select colonneUnite">
+                                            <select class="lesUnites">
                                                 <option value="EUR" selected>EUR</option>
                                                 <option value="FRF">FRF</option>
                                             </select>
                                         </div>
                                     </div> 
-                                </td>
-                                <td>
-                                    <div class="revenuReel lesSalairesReels">
-                                        <span> A Calculer quand appui btn + </span>
-                                    </div>
                                 </td>
                             </tr>
                         </tbody>
