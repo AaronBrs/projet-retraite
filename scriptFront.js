@@ -31,8 +31,21 @@ function recupDonnees(){
 //    const prenom = document.getElementById('prenom').value;
 //    const genre = document.querySelector('input[name="genre"]:checked').value;
 //    const dateNaissance = document.getElementById('dateNaissance').value;
-    const lesSalaires = document.getElementsByClassName('lesSalaires');
-    console.log(lesSalaires);
+
+//    nbTrimestresValides
+//    nbTrimestresValidesAvantAge20
+//    nbTrimestresValidesAvantAge16
+
+//    nbEnfantsNes
+//    nbEnfantsEleves
+
+//    nbTrimestresHandicap
+
+//    const lesAnnees = document.getElementsByClassName('lesAnnees');
+//    const lesSalaires = document.getElementsByClassName('lesSalaires');
+    const lesUnites = document.getElementsByClassName('lesUnites');
+
+    console.log(lesUnites);
 }
 
 function nouvelleLigne(){

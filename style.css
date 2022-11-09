@@ -234,12 +234,6 @@
 .tableSalaires tr td:nth-child(3){
   width: 5%;
 }
-.lesUnites{
-  width: 100%;
-}
-.tableSalaires tr td:nth-child(4){
-  width: 15%;
-}
-.lesSalairesReels{
+.colonneUnite{
   width: 100%;
 }
