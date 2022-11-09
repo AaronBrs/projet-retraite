@@ -56,7 +56,7 @@ function recupDonnees(){
 }
 
 function nouvelleLigne(){
-    var nouvelleLigne = '<tr><td><div class="inputfield"><input type="number" min="1920" max="2025" step="1"  class="lesAnnees input"></div></td><td><div class="inputfield"><input type="number" min="0.00" max="1000000.00" step="0.01" class="lesSalaires input"></div</td><td><div class="inputfield"><div class="custom_select colonneUnite"><select class="lesUnites"><option value="EUR" selected>EUR</option><option value="FRF">FRF</option></select></div></div> </td></tr>';
+    var nouvelleLigne = '<tr><td><div class="inputfield"><input type="number" min="1920" max="2025" step="1"  class="lesAnnees input"></div></td><td><div class="inputfield"><input type="number" min="0.00" max="1000000.00" step="0.01" class="lesSalaires input"></div</td><td><div class="inputfield"><div class="custom_select"><select class="lesUnites"><option value="EUR" selected>EUR</option><option value="FRF">FRF</option></select></div></div> </td<td><div class="revenuReel lesSalairesReels"></div></td></tr>';
     var tableau = document.getElementById('aRemplir');
     tableau.insertAdjacentHTML("beforeend",nouvelleLigne);
 }

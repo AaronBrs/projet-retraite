@@ -134,7 +134,33 @@ tabPlafond.set(1960,6840);
 var agePlusTot;
 var trimestresRequis;
 var ageAutoTauxPlein;
+
+
+var nom;
+var prenom;
+var genre;
+var dateDeNaissance;
 var trimestresTotaux;
+var trimestresAv20;
+var trimestresAv16;
+var nbEnfants = 0;
+var nbEnfantsEleves = 0;
+
+function calculRetraite(){
+    nom = document.getElementById("nom");
+    prenom = document.getElementById("prenom");
+    genre = document.querySelector('input[name="genre"]:checked').value;
+    dateDeNaissance = new Date(document.getElementById("dateNaissance").value);
+    trimestresTotaux = document.getElementById("nbTrimestresValides").value;
+    trimestresAv20 = document.getElementById("nbTrimestresValidesAvantAge20").value;
+    trimestresAv16 = document.getElementById("nbTrimestresValidesAvantAge16").value;
+    nbEnfants = document.getElementById("nbEnfantsMisAuMonde").value;
+    nbEnfantsEleves = document.getElementById("nbEnfantsEleves").value;
+
+
+}
+
+
 
 function convertirFrancEuro(salaire){
     return salaire*0.152449;
