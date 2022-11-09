@@ -4,6 +4,7 @@
     <head>
         <title>Mon simulateur d'assurance retraite</title>
         <link rel="stylesheet" href="style.css">
+        <script src="https://kit.fontawesome.com/ce51e35126.js" crossorigin="anonymous"></script>
     </head>
 
     <body>
@@ -11,6 +12,7 @@
             <div class="title">Formulaire</div>
             <div class="form">
                 <div id="partie1">
+                    <p>Saisie des informations personnelles</p>
                     <div class="inputfield">
                         <label for="nom">Nom</label>
                         <input id="nom" type="text" class="input">
@@ -31,10 +33,9 @@
                         <input id="dateNaissance" type="date" class="input">
                     </div>
                 </div>
-                <br>
                 <div id="btnPartie2" onclick="displayPartie2()" class="boutonFormulaire">Suivant</div>
-                <br>
-                <div id="partie2">
+                <div id="partie2" style='display: none;'>
+                    <p>Saisie des informations complémentaires</p>
                     <div class="inputfield">
                         <label for="nbTrimestresValides">Nombre de trimestres déjà validés</label>
                         <input id="nbTrimestresValides" name="nbTrimestresValides" type="number" class="input">
@@ -47,7 +48,7 @@
                         <label for="nbTrimestresValidesAvantAge16">Nombre de trimestres déjà validés avant 16 ans</label>
                         <input id="nbTrimestresValidesAvantAge16" name="nbTrimestresValidesAvantAge16" type="number" class="input">
                     </div>
-                    <div class="inputfield">
+                    <div id="champNbEnfantsNes" class="inputfield">
                         <label for="nbEnfantsNes">Nombre d'enfants nés :</label>   <span style="color: red;">TODO : afficher que pour les femmes</span><br>
                         <input type="number" id="nbEnfantsNes" name="nbEnfantsNes" class="input"><br>
                     </div>
@@ -57,20 +58,19 @@
                     </div>
                     <div class="inputfield terms">
                         <label class="check">
-                          <input id = "situationHandicap" type="checkbox">
+                          <input id = "situationHandicap" type="checkbox" onclick="afficheChampSituationHandicap()">
                           <span class="checkmark"></span>
                         </label>
-                        <p>Je suis en situation de handicap</p>
+                        Je suis en situation de handicap
                     </div>
-                    <div class="inputfield">
+                    <div id="champNbTrimestresHandicap" class="inputfield" style="display: none;">
                         <label for="nbTrimestresHandicap">Nombre de trimestres au titre du handicap :</label>
                         <input type="number" id="nbTrimestresHandicap" name="nbTrimestresHandicap" class="input"><br>
                     </div>
                 </div>
-                <br>
                 <div id="btnPartie3" onclick="displayPartie3()" class="boutonFormulaire">Suivant</div>
-                <br>
-                <div id="partie3">
+                <div id="partie3" style='display: none;'>
+                    <p>Saisie des revenus annuels</p>
                     <table class="tableSalaires" width = "100%">
                         <thead>
                             <tr>
@@ -106,10 +106,14 @@
                         </tbody>
                     </table>
                 </div>
-                <div id="btnNouvelleLigne" onclick="nouvelleLigne()" class="boutonFormulaire">+</div>
+                <div id="btnNouvelleLigne" onclick="nouvelleLigne()" class="boutonFormulaire">
+                    +
+                </div>
             </div>
-            <div onclick="recupDonnees()" class="boutonFormulaire">Valider</div>
-            <div onclick="location.href='index.html';" class="boutonFormulaire">Retour</div>
+            <div  class="lesBoutons">
+                <div onclick="location.href='index.html';" class="boutonFormulaire">Retour au menu</div>
+                <div onclick="recupDonnees()" class="boutonFormulaire">Valider</div>
+            </div>
         </div>  
     </body>
     

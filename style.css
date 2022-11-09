@@ -30,9 +30,6 @@
     position: fixed;
     width: 200px;
 }
-#partie1, #partie2, #partie3{
-  width: 100%;
-}
 #btnPartie3, #btnNouvelleLigne{
   display: none;
 }
@@ -40,7 +37,7 @@
     margin: 5px;
     text-align: center;
     font-weight: bolder;
-    width: 150px;
+    width: 180px;
     margin-top: 20px;
     padding : 15px;
     border-radius: 20px;
@@ -55,10 +52,35 @@
     border: solid white 2px ;
     background-color: #0474BCEE;
 }
-#partie2, #partie3{
-    display: none;
+#btnNouvelleLigne{
+  background-color: var(--jauneLogoAssu);
+  color: white;
+  border: none;
+  width: 30px;
+  border-radius: 16px;
+}
+.lesBoutons{
+  display: flex;
+  justify-content: space-around;
+  width: 80%;
+}
+#btnNouvelleLigne:hover{
+  color: var(--bleuLogoAssu);
+  
 }
 
+#partie1, #partie2, #partie3{
+  width: 95%;
+}
+#partie2, #partie3{
+  margin-top: 25px;
+  border-top: solid 3px var(--jauneLogoAssu);
+}
+#partie1 p, #partie2 p, #partie3 p{
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 24px;
+}
 .container{
   display: flex;
   flex-direction: column;
@@ -80,9 +102,8 @@
 }
 
 .wrapper .title{
-  font-size: 32px;
+  font-size: 36px;
   font-weight: 700;
-  margin-bottom: 25px;
   color: var(--bleuLogoAssu);
   text-transform: uppercase;
   text-align: center;
@@ -98,7 +119,7 @@
 
 .wrapper .form .inputfield{
   margin-bottom: 15px;
-  display: flex;
+  display: block;
   align-items: center;
 }
 
@@ -121,7 +142,6 @@
 
 .wrapper .form .inputfield .custom_select{
   position: relative;
-  height: 37px;
 }
 
 .wrapper .form .inputfield .custom_select:before{
@@ -218,7 +238,10 @@
 .tableSalaires{
   text-align: center;
 }
-
+.tableSalaires tr{
+  border: solid 2px black;
+  text-align: center;
+}
 .tableSalaires tr td:nth-child(1){
   width: 10%;
 }
