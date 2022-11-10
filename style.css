@@ -229,7 +229,7 @@
     margin-bottom: 5px;
   }
   .wrapper .form .inputfield.terms{
-    display:flex;
+
     flex-direction: row;
   }
 }
