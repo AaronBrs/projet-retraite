@@ -146,10 +146,7 @@ var trimestresAv16;
 var nbEnfants = 0;
 var nbEnfantsEleves = 0;
 var situationHandicape;
-var trimestresHandicape;
-var tabSalaires;
-var tabUnites;
-var tabAnnees;
+
 
 
 
@@ -163,11 +160,8 @@ function calculRetraite(){
     trimestresAv16 = document.getElementById("nbTrimestresValidesAvantAge16").value;
     nbEnfants = document.getElementById("nbEnfantsNes").value;
     nbEnfantsEleves = document.getElementById("nbEnfantsEleves").value;
-    situationHandicape = document.querySelector('#situationHandicap').checked;
-    trimestresHandicape = document.getElementById("nbTrimestresHandicap").value;
-    tabSalaires = document.getElementsByClassName("lesSalaires");
-    tabUnites = document.getElementsByClassName("lesUnites");
-    tabAnnees = document.getElementsByClassName("lesAnnees");
+    situationHandicape = document.querySelector('situationHandicap').checked;
+ 
 
 
 
