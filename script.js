@@ -145,6 +145,14 @@ var trimestresAv20;
 var trimestresAv16;
 var nbEnfants = 0;
 var nbEnfantsEleves = 0;
+var situationHandicap;
+var nbTrimestresHandicap = 0;
+
+var tabSalaires;
+var tabAnnees;
+var tabUnites;
+var tabSalaireReel = [];
+var tab25Salaires = [];
 
 function calculRetraite(){
     nom = document.getElementById("nom");
@@ -154,8 +162,17 @@ function calculRetraite(){
     trimestresTotaux = document.getElementById("nbTrimestresValides").value;
     trimestresAv20 = document.getElementById("nbTrimestresValidesAvantAge20").value;
     trimestresAv16 = document.getElementById("nbTrimestresValidesAvantAge16").value;
-    nbEnfants = document.getElementById("nbEnfantsMisAuMonde").value;
+    nbEnfants = document.getElementById("nbEnfantsNes").value;
     nbEnfantsEleves = document.getElementById("nbEnfantsEleves").value;
+    situationHandicap = document.getElementById('situationHandicap').checked;
+    if (situationHandicap){
+        nbTrimestresHandicap = document.getElementById('nbTrimestresHandicap').value;
+    }
+    tabSalaires = document.getElementsByClassName("lesSalaires");
+    tabUnites = document.getElementsByClassName("lesUnites");
+    tabAnnees = document.getElementsByClassName("lesAnnees");
+    calculTauxPlein(this.dateDeNaissance);
+
 
 
 }
@@ -172,11 +189,7 @@ function revaloriser(annee, salaire){
 
 // fonction calcul SAM : parcours de la liste -> si FRF -> conversion euro puis revalo sinon revalo directement, faire la somme
 // de tous les résultats
-var tabSalaires = document.getElementsByClassName("lesSalaires");
-var tabUnites = document.getElementsByClassName("lesUnites");
-var tabAnnees = document.getElementsByClassName("lesAnnees");
-var tabSalaireReel = [];
-var tab25Salaires = [];
+
 
 function calculerSalaireReel(tabSalaires,tabUnites){
     for(let i= 0; i<tabSalaires.length;i++){
