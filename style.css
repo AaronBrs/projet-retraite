@@ -118,16 +118,17 @@
 }
 
 .wrapper .form .inputfield{
+  width: 100%;
   margin-bottom: 15px;
   display: block;
   align-items: center;
 }
 
 .wrapper .form .inputfield label{
-   width: 200px;
-   color: var(--bleuLogoAssu);
-   margin-right: 10px;
-  font-size: 14px;
+  min-width: 20%;
+  color: var(--bleuLogoAssu);
+  margin-right: 10px;
+  font-size: 22px;
 }
 
 .wrapper .form .inputfield .input{
@@ -135,13 +136,10 @@
   outline: none;
   border: 1px solid #d5dbd9;
   font-size: 15px;
-  padding: 8px 10px;
+  margin: 8px 10px;
+  padding : 5px;
   border-radius: 3px;
   transition: all 0.3s ease;
-}
-
-.wrapper .form .inputfield .custom_select{
-  position: relative;
 }
 
 .wrapper .form .inputfield .custom_select:before{
@@ -231,6 +229,7 @@
     margin-bottom: 5px;
   }
   .wrapper .form .inputfield.terms{
+    display:flex;
     flex-direction: row;
   }
 }

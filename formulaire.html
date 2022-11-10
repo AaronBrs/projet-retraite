@@ -32,6 +32,10 @@
                         <label for="dateNaissance">Date de naissance</label>
                         <input id="dateNaissance" type="date" class="input">
                     </div>
+                    <div class="inputfield">
+                        <label for="dateRetraite">Date de départ à la retraite</label>
+                        <input id="dateRetraite" type="date" class="input">
+                    </div>
                 </div>
                 <div id="btnPartie2" onclick="displayPartie2()" class="boutonFormulaire">Suivant</div>
                 <div id="partie2" style='display: none;'>
@@ -42,26 +46,28 @@
                     </div>
                     <div class="inputfield">
                         <label for="nbTrimestresValidesAvantAge20">Nombre de trimestres déjà validés avant 20 ans</label>
-                        <input id="nbTrimestresValidesAvantAge20" name="nbTrimestresValidesAvantAge20" type="number" class="input">
+                        <input id="nbTrimestresValidesAvantAge20" name="nbTrimestresValidesAvantAge20" type="number" class="input" value="0">
                     </div>
                     <div class="inputfield">
                         <label for="nbTrimestresValidesAvantAge16">Nombre de trimestres déjà validés avant 16 ans</label>
-                        <input id="nbTrimestresValidesAvantAge16" name="nbTrimestresValidesAvantAge16" type="number" class="input">
+                        <input id="nbTrimestresValidesAvantAge16" name="nbTrimestresValidesAvantAge16" type="number" class="input" value="0">
                     </div>
                     <div id="champNbEnfantsNes" class="inputfield">
-                        <label for="nbEnfantsNes">Nombre d'enfants nés :</label>   <span style="color: red;">TODO : afficher que pour les femmes</span><br>
-                        <input type="number" id="nbEnfantsNes" name="nbEnfantsNes" class="input"><br>
+                        <label for="nbEnfantsNes">Nombre d'enfants nés :</label><br>
+                        <input type="number" id="nbEnfantsNes" name="nbEnfantsNes" class="input" value="0"><br>
                     </div>
                     <div class="inputfield">
                         <label for="nbEnfantsEleves">Nombre d'enfants élevés :</label>
-                        <input type="number" id="nbEnfantsEleves" name="nbEnfantsEleves" class="input"><br>
+                        <input type="number" id="nbEnfantsEleves" name="nbEnfantsEleves" class="input" value="0"><br>
                     </div>
                     <div class="inputfield terms">
                         <label class="check">
                           <input id = "situationHandicap" type="checkbox" onclick="afficheChampSituationHandicap()">
                           <span class="checkmark"></span>
                         </label>
-                        Je suis en situation de handicap
+                        <div>
+                            Je suis en situation de handicap
+                        </div>
                     </div>
                     <div id="champNbTrimestresHandicap" class="inputfield" style="display: none;">
                         <label for="nbTrimestresHandicap">Nombre de trimestres au titre du handicap :</label>
@@ -116,7 +122,6 @@
             </div>
         </div>  
     </body>
-    
     <script src="script.js"></script>
     <script src="scriptFront.js"></script>
 </html>
