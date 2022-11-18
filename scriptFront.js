@@ -1,11 +1,13 @@
 function displayPartie2(){
+    const champNom = document.querySelector('#nom');
+    const champPrenom = document.querySelector('#prenom');
+    const champGenre = document.querySelector('input[name="genre"]:checked');
+    const champDateNaissance = document.querySelector('#dateNaissance');
+    const champDateRetraite = document.querySelector('#dateRetraite');
+
     const divNbEnfantsNes = document.getElementById('champNbEnfantsNes');
     const genre = document.querySelector('input[name="genre"]:checked').value;
-    if (genre=="Femme"){
-        divNbEnfantsNes.style.display='block';
-    }else{
-        divNbEnfantsNes.style.display='none';
-    }
+
     const divPartie2 = document.getElementById('partie2');
     const btnPartie2 = document.getElementById('btnPartie2');
     const btnPartie3 = document.getElementById('btnPartie3');
@@ -52,7 +54,6 @@ function recupDonnees(){
 //    const lesSalaires = document.getElementsByClassName('lesSalaires');
 //    const lesUnites = document.getElementsByClassName('lesUnites');
 
-    console.log("caca");
 }
 
 function nouvelleLigne(){
