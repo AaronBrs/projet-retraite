@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
     <head>
         <title>Mon simulateur d'assurance retraite</title>
         <link rel="stylesheet" href="style.css">
@@ -24,10 +23,12 @@
                     </div>
                     <div class="inputfield">
                         <label>Genre</label><br>
-                        <input type="radio" id= "genreHomme" name="genre" value="Homme">
-                        <label for="genreHomme">Homme</label><br>
-                        <input type="radio" id="genreFemme" name="genre" value="Femme">
-                        <label for="genreFemme">Femme</label><br>
+                        <div class="lesGenres">
+                            <input type="radio" id= "genreHomme" name="genre" value="Homme">
+                            <label for="genreHomme">Homme</label><br>
+                            <input type="radio" id="genreFemme" name="genre" value="Femme">
+                            <label for="genreFemme">Femme</label><br>    
+                        </div>
                      </div>
                      <div class="inputfield">
                         <label for="dateNaissance">Date de naissance</label>
@@ -58,7 +59,7 @@
                         <input type="number" id="nbEnfantsNes" name="nbEnfantsNes" class="input" value="0"><br>
                     </div>
                     <div class="inputfield">
-                        <label for="nbEnfantsEleves">Nombre d'enfants élevés :</label>
+                        <label for="nbEnfantsEleves">Nombre de trimestres acquis au titre de l'éducation d'un enfant :</label>
                         <input type="number" id="nbEnfantsEleves" name="nbEnfantsEleves" class="input" value="0"><br>
                     </div>
                     <div class="inputfield terms">

@@ -19,10 +19,12 @@ body{
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: transparent; 
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
   background: var(--jauneLogoAssu); 
+  
+
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--bleuLogoAssu); 
@@ -76,6 +78,7 @@ body{
   background-color: var(--jauneLogoAssu);
   color: white;
   border: none;
+  margin-top: 0;
   width: 30px;
   border-radius: 16px;
 }
@@ -173,8 +176,6 @@ body{
 }
 
 .wrapper .form .inputfield .custom_select select{
-  -webkit-appearance: none;
-  -moz-appearance:   none;
   appearance:        none;
   outline: none;
   width: 100%;
@@ -196,9 +197,12 @@ body{
    font-size: 14px;
    color: #757575;
 }
+/*-----------------------------------------*/
+
 .wrapper .form .inputfield .check{
   width: 15px;
   height: 15px;
+  margin: 0px;
   position: relative;
   display: block;
   cursor: pointer;
@@ -236,6 +240,7 @@ body{
   display: block;
 }
 
+/*-----------------------------------------*/
 .wrapper .form .inputfield:last-child{
   margin-bottom: 0;
 }
@@ -277,4 +282,10 @@ body{
 }
 .colonneUnite{
   width: 100%;
+}
+.lesGenres{
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+  justify-content: space-around;
 }
