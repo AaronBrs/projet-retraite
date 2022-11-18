@@ -34,6 +34,13 @@ function displayPartie3(){
         btnNouvelleLigne.style.display = 'none'
     }
 }
+function displayRecap(){
+    const formulaire = document.querySelector('.wrapper');
+    formulaire.style.display='none';
+    const recap = document.querySelector('.container');
+    recap.style.display='flex';
+
+}
 function nouvelleLigne(){
     var nouvelleLigne = '<tr><td><div class="inputfield"><input type="number" min="1920" max="2025" step="1"  class="lesAnnees input"></div></td><td><div class="inputfield"><input type="number" min="0.00" max="1000000.00" step="0.01" class="lesSalaires input"></div</td><td><div class="inputfield"><div class="custom_select"><select class="lesUnites"><option value="EUR" selected>EUR</option><option value="FRF">FRF</option></select></div></div> </td<td><div class="revenuReel lesSalairesReels"></div></td></tr>';
     var tableau = document.getElementById('aRemplir');
