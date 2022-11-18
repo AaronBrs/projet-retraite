@@ -152,6 +152,8 @@ var dateRetraite;
 
 var tabSalaires;
 var tabAnnees;
+var tabSalairesParAn = [];
+var tabAnneesUniques = [];
 var tabUnites;
 var tabSalaireReel = [];
 var tab25Salaires = [];
@@ -160,6 +162,10 @@ var montantFinal;
 var montantMensuel;
 
 function calculRetraite(){
+    tabSalaireReel = [];
+    tab25Salaires = [];
+    tabSalairesParAn = [];
+    tabAnneesUniques = [];
     nom = document.getElementById("nom");
     prenom = document.getElementById("prenom");
     genre = document.querySelector('input[name="genre"]:checked').value;
@@ -168,6 +174,7 @@ function calculRetraite(){
     trimestresAv20 = document.getElementById("nbTrimestresValidesAvantAge20").value;
     trimestresAv16 = document.getElementById("nbTrimestresValidesAvantAge16").value;
     dateRetraite = new Date(document.getElementById("dateRetraite").value);
+    nbEnfants = document.getElementById("nbEnfantsNes").value;
     nbEnfantsEleves = document.getElementById("nbEnfantsEleves").value;
     situationHandicap = document.getElementById('situationHandicap').checked;
     tabSalaires = document.getElementsByClassName("lesSalaires");
@@ -179,9 +186,12 @@ function calculRetraite(){
         console.log(this.trimestresTotaux);
         tauxPleinCarriereLongue(this.dateDeNaissance,this.trimestresAv20, this.trimestresAv16, this.trimestresTotaux);
     }
-    console.log("2 Age plus tot : "+agePlusTot + ", trimestres requis : " + trimestresRequis + " ,age taux plein : " + ageAutoTauxPlein)
+    console.log("2 Age plus tot : "+ agePlusTot + ", trimestres requis : " + trimestresRequis + " ,age taux plein : " + ageAutoTauxPlein)
+    regrouperSalairesUneAnnee();
+    for (let i = 0; i<tabSalairesParAn.length;i++){
+        console.log(tabSalairesParAn[i]);
+    }
     if(genre=="Femme"){
-        nbEnfants = document.getElementById("nbEnfantsNes").value;
         enfantNe(this.nbEnfants);
     }
     enfantEleve(this.nbEnfantsEleves);
@@ -199,7 +209,22 @@ function calculRetraite(){
     calculerSalaireReel(tabSalaires,tabUnites);
     sam = calculerSAM(tabSalaireReel);
     console.log("SAM = " + sam);
-    montantFinal = sam * taux/100 * trimestresTotaux/trimestresRequis;
+    if(!situationHandicap){
+        montantFinal = sam * taux/100 * trimestresTotaux/trimestresRequis;
+    }
+    else{
+        var coeff = majorationHandicap(trimestresTotaux, nbTrimestresHandicap);
+        var montantTemp = sam+sam*coeff;
+        if(montantTemp>sam*50/100){
+            montantFinal=sam*50/100;
+        }
+        else {
+            montantFinal = montantTemp;
+        }
+    }
+    if(nbEnfants>2){
+        montantFinal = montantFinal + montantFinal*10/100;
+    }
     montantMensuel = montantFinal/12;
     console.log(montantFinal+"/12 = " + montantMensuel);
 }
@@ -217,6 +242,19 @@ function revaloriser(annee, salaire){
 // fonction calcul SAM : parcours de la liste -> si FRF -> conversion euro puis revalo sinon revalo directement, faire la somme
 // de tous les résultats
 
+
+function regrouperSalairesUneAnnee(){
+    for(let i = 0; i < this.tabSalaires.length; i++){
+        if(!this.tabAnneesUniques.includes(parseInt(this.tabAnnees[i].value))) {
+            this.tabAnneesUniques.push(parseInt(this.tabAnnees[i].value));
+            this.tabSalairesParAn.push(parseInt(this.tabSalaires[i].value));
+        }
+        else{
+            var index = this.tabAnneesUniques.indexOf(parseInt(this.tabAnnees[i].value));
+            this.tabSalairesParAn[index] += parseInt(this.tabSalaires[i].value);
+            }
+    }
+}
 
 function calculerSalaireReel(tabSalaires,tabUnites){
     for(let i= 0; i<tabSalaires.length;i++){
@@ -322,9 +360,9 @@ function calculTauxPlein(dateNaissance){
         ageAutoTauxPlein = 66.167;
     }
     else if (dateNaissance.getFullYear() == 1952){
-        this.agePlusTot = 60.75;
-        this.trimestresRequis = 164;
-        this.ageAutoTauxPlein = 65.75;
+        agePlusTot = 60.75;
+        trimestresRequis = 164;
+        ageAutoTauxPlein = 65.75;
     }
     else if (dateNaissance.getFullYear() == 1951){
         if(dateNaissance.month >= 7){
@@ -498,10 +536,20 @@ function decoteAge(dateRetraite, dateNaissance){
 
 function enfantNe(nbEnfant){
     this.trimestresTotaux = parseInt(this.trimestresTotaux) + parseInt(nbEnfant)*4;
+    if(this.trimestresTotaux > this.trimestresRequis){
+        this.trimestresTotaux = this.trimestresRequis;
+    }
 }
 
 function enfantEleve(nbEnfant){
     this.trimestresTotaux = parseInt(this.trimestresTotaux) + parseInt(nbEnfant)*4;
+    if(this.trimestresTotaux > this.trimestresRequis){
+        this.trimestresTotaux = this.trimestresRequis;
+    }
+}
+
+function majorationHandicap(dureeCotis, trimestresTot){
+    return dureeCotis/trimestresTot*1/3;
 }
 
 
