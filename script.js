@@ -206,7 +206,7 @@ function calculRetraite(){
         taux = calculTaux(trimestresTotaux,dateDeNaissance,dateRetraite);
         console.log(taux);
     }
-    calculerSalaireReel(tabSalaires,tabUnites);
+    calculerSalaireReel(tabSalairesParAn,tabUnites);
     sam = calculerSAM(tabSalaireReel);
     console.log("SAM = " + sam);
     if(!situationHandicap){
@@ -259,8 +259,10 @@ function regrouperSalairesUneAnnee(){
 function calculerSalaireReel(tabSalaires,tabUnites){
     for(let i= 0; i<tabSalaires.length;i++){
         if(tabUnites[i].value == "EUR"){
-            if(parseInt(tabSalaires[i].value)<= parseInt(this.tabPlafond.get(parseInt(tabAnnees[i].value)))){
-                tabSalaireReel.push(revaloriser(parseInt(tabAnnees[i].value),parseInt(tabSalaires[i].value)));
+            console.log(" ICI");
+            console.log(tabSalaires[i]);
+            if(parseInt(tabSalaires[i])<= parseInt(this.tabPlafond.get(parseInt(tabAnnees[i].value)))){
+                tabSalaireReel.push(revaloriser(parseInt(tabAnnees[i].value),parseInt(tabSalaires[i])));
             }
             else {
                 tabSalaireReel.push(revaloriser(parseInt(tabAnnees[i].value),this.tabPlafond.get(parseInt(tabAnnees[i].value))));
@@ -268,10 +270,10 @@ function calculerSalaireReel(tabSalaires,tabUnites){
            //tabSalaireReel[i] = revaloriser(tabSalaires[i]));
     
         }
-        else if( tabUnites[i] == "FRF"){
+        else if( tabUnites[i].value == "FRF"){
             var salaireConverti;
-            if(parseInt(tabSalaires[i].value)<= this.tabPlafond.get(parseInt(tabAnnees[i].value))){
-                salaireConverti = convertirFrancEuro(parseInt(tabSalaires[i].value));
+            if(parseInt(tabSalaires[i])<= this.tabPlafond.get(parseInt(tabAnnees[i].value))){
+                salaireConverti = convertirFrancEuro(parseInt(tabSalaires[i]));
 
             }
             else {
@@ -296,7 +298,7 @@ function calculerSAM(tabSalaireReel){
     console.log(tabSalaireReel);
     var tabTrier = tabSalaireReel.sort(function(a,b){return b-a});
     console.log(tabTrier);
-    for(let i=0; i < 5; i++ ){
+    for(let i=0; i < 5  ; i++ ){
         console.log(parseInt(tabTrier[i]));
         tab25Salaires.push(tabTrier[i]);
 
@@ -306,10 +308,6 @@ function calculerSAM(tabSalaireReel){
     return moyenne(tab25Salaires);
 
 }
-
-
-
-var tabcaca = [2,3,4,8,1,2,3,4,8,1,2,3,4,8,1,2,3,4,8,1,2,3,4,8,1,2,3,4,8,1,2,3,4,8,12,3,4,8,1]
 
 
 function calculTauxPlein(dateNaissance){
