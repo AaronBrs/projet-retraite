@@ -161,13 +161,18 @@ var sam;
 var montantFinal;
 var montantMensuel;
 
+var dateDepartTPTrim;
+var dateDepartTPAge;
+var montantPossibleTPTrim;
+var montantPossibleTPAge;
+
 function calculRetraite(){
     tabSalaireReel = [];
     tab25Salaires = [];
     tabSalairesParAn = [];
     tabAnneesUniques = [];
-    nom = document.getElementById("nom");
-    prenom = document.getElementById("prenom");
+    nom = document.getElementById("nom").value;
+    prenom = document.getElementById("prenom").value;
     genre = document.querySelector('input[name="genre"]:checked').value;
     dateDeNaissance = new Date(document.getElementById("dateNaissance").value);
     trimestresTotaux = document.getElementById("nbTrimestresValides").value;
@@ -549,6 +554,41 @@ function enfantEleve(nbEnfant){
 function majorationHandicap(dureeCotis, trimestresTot){
     return dureeCotis/trimestresTot*1/3;
 }
+
+function calculMontantPossibleTP(){
+
+}
+
+function calculTPTrimManquants(){
+    var trimManquants = this.trimestresRequis - this.trimestresTotaux;
+    if(trimManquants > 0){
+        this.dateDepartTPTrim = new Date(dateRetraite.getTime());
+        this.dateDepartTPTrim.setMonth(this.dateDepartTPTrim.getMonth()+3*trimManquants);
+    }
+}
+
+function calculTPAgeManquant(){
+    var diff = dateRetraite.getTime() - dateDeNaissance.getTime();
+    var age = new Date(diff);
+    var ageRetraite = Math.abs(age.getUTCFullYear() - 1970) + Math.abs(age.getUTCMonth()*10/120);
+    this.dateDepartTPAge = new Date(dateRetraite.getTime());
+    this.dateDepartTPAge.setMonth(this.dateDepartTPAge.getMonth()+((ageAutoTauxPlein-ageRetraite)*12));
+    if(this.dateDepartTPAge.getMonth()<3){
+        this.dateDepartTPAge.setMonth(3);
+    }
+    else if(this.dateDepartTPAge.getMonth()<6){
+        this.dateDepartTPAge.setMonth(6);
+    }
+    else if(this.dateDepartTPAge.getMonth()<9){
+        this.dateDepartTPAge.setMonth(9);
+    }
+    else {
+        this.dateDepartTPAge.setMonth(0);
+        this.dateDepartTPAge.setFullYear(this.dateDepartTPAge.getFullYear()+1);
+    }
+
+}
+
 
 
 // tests
