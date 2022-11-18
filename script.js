@@ -147,14 +147,25 @@ var nbEnfants = 0;
 var nbEnfantsEleves = 0;
 var situationHandicap;
 var nbTrimestresHandicap = 0;
+var taux;
+var dateRetraite;
 
 var tabSalaires;
 var tabAnnees;
+var tabSalairesParAn = [];
+var tabAnneesUniques = [];
 var tabUnites;
 var tabSalaireReel = [];
 var tab25Salaires = [];
+var sam;
+var montantFinal;
+var montantMensuel;
 
 function calculRetraite(){
+    tabSalaireReel = [];
+    tab25Salaires = [];
+    tabSalairesParAn = [];
+    tabAnneesUniques = [];
     nom = document.getElementById("nom");
     prenom = document.getElementById("prenom");
     genre = document.querySelector('input[name="genre"]:checked').value;
@@ -162,19 +173,60 @@ function calculRetraite(){
     trimestresTotaux = document.getElementById("nbTrimestresValides").value;
     trimestresAv20 = document.getElementById("nbTrimestresValidesAvantAge20").value;
     trimestresAv16 = document.getElementById("nbTrimestresValidesAvantAge16").value;
+    dateRetraite = new Date(document.getElementById("dateRetraite").value);
     nbEnfants = document.getElementById("nbEnfantsNes").value;
     nbEnfantsEleves = document.getElementById("nbEnfantsEleves").value;
     situationHandicap = document.getElementById('situationHandicap').checked;
-    if (situationHandicap){
-        nbTrimestresHandicap = document.getElementById('nbTrimestresHandicap').value;
-    }
     tabSalaires = document.getElementsByClassName("lesSalaires");
     tabUnites = document.getElementsByClassName("lesUnites");
     tabAnnees = document.getElementsByClassName("lesAnnees");
     calculTauxPlein(this.dateDeNaissance);
-
-
-
+    console.log("Age plus tot : "+agePlusTot + ", trimestres requis : " + trimestresRequis + " ,age taux plein : " + ageAutoTauxPlein)
+    if (this.trimestresAv20 > 4 || this.trimestresAv16 > 4 ){
+        console.log(this.trimestresTotaux);
+        tauxPleinCarriereLongue(this.dateDeNaissance,this.trimestresAv20, this.trimestresAv16, this.trimestresTotaux);
+    }
+    console.log("2 Age plus tot : "+ agePlusTot + ", trimestres requis : " + trimestresRequis + " ,age taux plein : " + ageAutoTauxPlein)
+    regrouperSalairesUneAnnee();
+    for (let i = 0; i<tabSalairesParAn.length;i++){
+        console.log(tabSalairesParAn[i]);
+    }
+    if(genre=="Femme"){
+        enfantNe(this.nbEnfants);
+    }
+    enfantEleve(this.nbEnfantsEleves);
+    console.log("3 Age plus tot : "+agePlusTot + ", trimestres requis : " + trimestresRequis + " ,age taux plein : " + ageAutoTauxPlein)
+    if (situationHandicap){
+        nbTrimestresHandicap = document.getElementById('nbTrimestresHandicap').value;
+        console.log(this.trimestresTotaux)
+        tauxPleinHandicap(this.dateDeNaissance,this.nbTrimestresHandicap,this.trimestresTotaux);
+        console.log("4 Age plus tot : "+agePlusTot + ", trimestres requis : " + trimestresRequis + " ,age taux plein : " + ageAutoTauxPlein)
+    }
+    else {
+        taux = calculTaux(trimestresTotaux,dateDeNaissance,dateRetraite);
+        console.log(taux);
+    }
+    calculerSalaireReel(tabSalairesParAn,tabUnites);
+    sam = calculerSAM(tabSalaireReel);
+    console.log("SAM = " + sam);
+    if(!situationHandicap){
+        montantFinal = sam * taux/100 * trimestresTotaux/trimestresRequis;
+    }
+    else{
+        var coeff = majorationHandicap(trimestresTotaux, nbTrimestresHandicap);
+        var montantTemp = sam+sam*coeff;
+        if(montantTemp>sam*50/100){
+            montantFinal=sam*50/100;
+        }
+        else {
+            montantFinal = montantTemp;
+        }
+    }
+    if(nbEnfants>2){
+        montantFinal = montantFinal + montantFinal*10/100;
+    }
+    montantMensuel = montantFinal/12;
+    console.log(montantFinal+"/12 = " + montantMensuel);
 }
 
 
@@ -191,27 +243,43 @@ function revaloriser(annee, salaire){
 // de tous les résultats
 
 
+function regrouperSalairesUneAnnee(){
+    for(let i = 0; i < this.tabSalaires.length; i++){
+        if(!this.tabAnneesUniques.includes(parseInt(this.tabAnnees[i].value))) {
+            this.tabAnneesUniques.push(parseInt(this.tabAnnees[i].value));
+            this.tabSalairesParAn.push(parseInt(this.tabSalaires[i].value));
+        }
+        else{
+            var index = this.tabAnneesUniques.indexOf(parseInt(this.tabAnnees[i].value));
+            this.tabSalairesParAn[index] += parseInt(this.tabSalaires[i].value);
+            }
+    }
+}
+
 function calculerSalaireReel(tabSalaires,tabUnites){
     for(let i= 0; i<tabSalaires.length;i++){
-        if(tabUnites[i] == "EUR"){
-            if(tabSalaires[i]<= this.tabPlafond.get(tabAnnees[i])){
-                tabSalaireReel.push(revaloriser(tabSalaires[i]));
+        if(tabUnites[i].value == "EUR"){
+            console.log(" ICI");
+            console.log(tabSalaires[i]);
+            if(parseInt(tabSalaires[i])<= parseInt(this.tabPlafond.get(parseInt(tabAnnees[i].value)))){
+                tabSalaireReel.push(revaloriser(parseInt(tabAnnees[i].value),parseInt(tabSalaires[i])));
             }
             else {
-                tabSalaireReel.push(revaloriser(this.tabPlafond.get(tabAnnees[i])));
+                tabSalaireReel.push(revaloriser(parseInt(tabAnnees[i].value),this.tabPlafond.get(parseInt(tabAnnees[i].value))));
             }
            //tabSalaireReel[i] = revaloriser(tabSalaires[i]));
     
         }
-        else if( tabUnites[i] == "FRF"){
+        else if( tabUnites[i].value == "FRF"){
             var salaireConverti;
-            if(tabSalaires[i]<= this.tabPlafond.get(tabAnnees[i])){
-                salaireConverti = convertirFrancEuro(tabSalaires[i]);
+            if(parseInt(tabSalaires[i])<= this.tabPlafond.get(parseInt(tabAnnees[i].value))){
+                salaireConverti = convertirFrancEuro(parseInt(tabSalaires[i]));
+
             }
             else {
-                salaireConverti = this.tabPlafond.get(tabAnnees[i]);
+                salaireConverti = this.tabPlafond.get(parseInt(tabAnnees[i].value));
             }
-            tabSalaireReel.push(revaloriser(salaireConverti));            //tabSalaireReel[i] = revaloriser(salaireConverti));
+            tabSalaireReel.push(revaloriser(parseInt(tabAnnees[i].value),salaireConverti));            //tabSalaireReel[i] = revaloriser(salaireConverti));
         }
     }
     console.log(tabSalaireReel);
@@ -226,21 +294,20 @@ function moyenne(a) {
     return c/b;
   }
 
-function calculerSAM(tabSalaireReel ){
+function calculerSAM(tabSalaireReel){
+    console.log(tabSalaireReel);
     var tabTrier = tabSalaireReel.sort(function(a,b){return b-a});
     console.log(tabTrier);
-    for(let i=0; i < 25; i++ ){
-        tab25Salaires.push(tabTrier[i]); 
+    for(let i=0; i < 5  ; i++ ){
+        console.log(parseInt(tabTrier[i]));
+        tab25Salaires.push(tabTrier[i]);
+
         
     }
     console.log(tab25Salaires)
     return moyenne(tab25Salaires);
 
 }
-
-
-
-var tabcaca = [2,3,4,8,1,2,3,4,8,1,2,3,4,8,1,2,3,4,8,1,2,3,4,8,1,2,3,4,8,1,2,3,4,8,12,3,4,8,1]
 
 
 function calculTauxPlein(dateNaissance){
@@ -291,9 +358,9 @@ function calculTauxPlein(dateNaissance){
         ageAutoTauxPlein = 66.167;
     }
     else if (dateNaissance.getFullYear() == 1952){
-        this.agePlusTot = 60.75;
-        this.trimestresRequis = 164;
-        this.ageAutoTauxPlein = 65.75;
+        agePlusTot = 60.75;
+        trimestresRequis = 164;
+        ageAutoTauxPlein = 65.75;
     }
     else if (dateNaissance.getFullYear() == 1951){
         if(dateNaissance.month >= 7){
@@ -358,55 +425,71 @@ function tauxPleinCarriereLongue(dateNaissance, trimestres20A, trimestres16A, du
 }
 
 function tauxPleinHandicap(dateNaissance, dureeTotaleAssu, dureeCotis){
+
     if (1956 <= dateNaissance.getFullYear() <= 1957){
         if(dureeCotis >= 106 && dureeTotaleAssu >= 126){
             agePlusTot = 55;
+
         }
         else if(dureeCotis >= 96 && dureeTotaleAssu >= 116){
             agePlusTot = 56;
+            taux = 50;
         }
         else if(dureeCotis >= 86 && dureeTotaleAssu >= 106){
             agePlusTot = 57;
+            taux = 50;
         }
         else if(dureeCotis >= 76 && dureeTotaleAssu >= 96){
             agePlusTot = 58;
+            taux = 50;
         }
         else if(dureeCotis >= 66 && dureeTotaleAssu >= 86){
             agePlusTot = 59;
+            taux = 50;
         }
     }
     else if (1958 <= dateNaissance.getFullYear() <= 1960){
         if(dureeCotis >= 107 && dureeTotaleAssu >= 127){
             agePlusTot = 55;
+            taux = 50;
         }
         else if(dureeCotis >= 97 && dureeTotaleAssu >= 117){
             agePlusTot = 56;
+            taux = 50;
         }
         else if(dureeCotis >= 87 && dureeTotaleAssu >= 107){
             agePlusTot = 57;
+            taux = 50;
         }
         else if(dureeCotis >= 77 && dureeTotaleAssu >= 97){
             agePlusTot = 58;
+            taux = 50;
         }
         else if(dureeCotis >= 67 && dureeTotaleAssu >= 87){
             agePlusTot = 59;
+            taux = 50;
         }
     }
     if (1961 <= dateNaissance.getFullYear() <= 1963){
-        if(dureeCotis >= 108 && dureeTotaleAssu >= 128){
+        if(parseInt(dureeCotis) >= 108 && parseInt(dureeTotaleAssu) >= 128){
             agePlusTot = 55;
+            taux = 50;
         }
         else if(dureeCotis >= 98 && dureeTotaleAssu >= 118){
             agePlusTot = 56;
+            taux = 50;
         }
         else if(dureeCotis >= 88 && dureeTotaleAssu >= 108){
             agePlusTot = 57;
+            taux = 50;
         }
         else if(dureeCotis >= 78 && dureeTotaleAssu >= 98){
             agePlusTot = 58;
+            taux = 50;
         }
         else if(dureeCotis >= 68 && dureeTotaleAssu >= 88){
             agePlusTot = 59;
+            taux = 50;
         }
     }
 }
@@ -443,7 +526,6 @@ function decoteAge(dateRetraite, dateNaissance){
     var diff = dateRetraite.getTime() - dateNaissance.getTime();
     var age = new Date(diff);
     var ageRetraite = Math.abs(age.getUTCFullYear() - 1970) + Math.abs(age.getUTCMonth()*10/120);
-    console.log(ageRetraite);
     if (ageRetraite < this.ageAutoTauxPlein){
         return (this.ageAutoTauxPlein-ageRetraite)*4*0.625;
     }
@@ -451,11 +533,21 @@ function decoteAge(dateRetraite, dateNaissance){
 }
 
 function enfantNe(nbEnfant){
-    this.trimestresTotaux = this.trimestresTotaux + nbEnfant*4;
+    this.trimestresTotaux = parseInt(this.trimestresTotaux) + parseInt(nbEnfant)*4;
+    if(this.trimestresTotaux > this.trimestresRequis){
+        this.trimestresTotaux = this.trimestresRequis;
+    }
 }
 
 function enfantEleve(nbEnfant){
-    this.trimestresTotaux = this.trimestresTotaux + nbEnfant*4;
+    this.trimestresTotaux = parseInt(this.trimestresTotaux) + parseInt(nbEnfant)*4;
+    if(this.trimestresTotaux > this.trimestresRequis){
+        this.trimestresTotaux = this.trimestresRequis;
+    }
+}
+
+function majorationHandicap(dureeCotis, trimestresTot){
+    return dureeCotis/trimestresTot*1/3;
 }
 
 
