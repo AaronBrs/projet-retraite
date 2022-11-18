@@ -148,7 +148,6 @@ body{
 }
 
 .wrapper .form .inputfield label{
-  min-width: 20%;
   color: var(--bleuLogoAssu);
   margin-right: 10px;
   font-size: 22px;
@@ -198,6 +197,9 @@ body{
    color: #757575;
 }
 /*-----------------------------------------*/
+.terms div{
+  width: 50%;
+}
 
 .wrapper .form .inputfield .check{
   width: 15px;
@@ -216,6 +218,7 @@ body{
 .wrapper .form .inputfield .check .checkmark{
   width: 15px;
   height: 15px;
+  margin: 0;
   border: 1px solid var(--jauneLogoAssu);
   display: block;
   position: relative;
