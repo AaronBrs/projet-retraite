@@ -180,7 +180,6 @@ function calculRetraite(){
     tabAnnees = document.getElementsByClassName("lesAnnees");
     calculTauxPlein(this.dateDeNaissance);
 
-
 }
 
 
