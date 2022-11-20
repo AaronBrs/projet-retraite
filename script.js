@@ -145,7 +145,6 @@ var trimestresAv20;
 var trimestresAv16;
 var nbEnfants = 0;
 var nbEnfantsEleves = 0;
-var situationHandicape;
 
 
 
@@ -185,8 +184,6 @@ function calculRetraite(){
     dateRetraite = new Date(document.getElementById("dateRetraite").value);
     nbEnfants = document.getElementById("nbEnfantsNes").value;
     nbEnfantsEleves = document.getElementById("nbEnfantsEleves").value;
-    situationHandicape = document.querySelector('situationHandicap').checked;
-
 
     situationHandicap = document.getElementById('situationHandicap').checked;
     tabSalaires = document.getElementsByClassName("lesSalaires");
@@ -311,7 +308,7 @@ function calculerSAM(tabSalaireReel){
     console.log(tabSalaireReel);
     var tabTrier = tabSalaireReel.sort(function(a,b){return b-a});
     console.log(tabTrier);
-    for(let i=0; i < 5  ; i++ ){
+    for(let i=0; i < 25  ; i++ ){
         console.log(parseInt(tabTrier[i]));
         tab25Salaires.push(tabTrier[i]);
 
@@ -589,8 +586,8 @@ function displayRecap(){
     document.getElementById("dateNaissanceRecup").innerHTML = dateDeNaissance.getFullYear();
     calculTauxPlein(dateDeNaissance);
     document.getElementById("nbTrimestreRequisRecup").innerHTML = trimestresRequis;
-    document.getElementById("ageTauxPleinRecup").innerHTML = ageAutoTauxPlein;
-    document.getElementById("ageMinimumRecup").innerHTML = agePlusTot;
+    document.getElementById("ageTauxPleinRecup").innerHTML = Math.round(ageAutoTauxPlein);
+    document.getElementById("ageMinimumRecup").innerHTML = Math.round(agePlusTot);
     dureeCotis = document.getElementById("nbTrimestresValides").value;
     dateRetraite = new Date(document.getElementById("dateRetraite").value);
     var tauxPlein = TauxPleinOuNon(dureeCotis, dateDeNaissance, dateRetraite);
@@ -606,8 +603,10 @@ function displayRecap(){
     }
     var trimestresManquants = trimestresRequis - dureeCotis;
     document.getElementById("nbTrimestreManquantRecup").innerHTML = trimestresManquants;
-    document.getElementById("montantRetraiteAnnRecup").innerHTML = montantFinal;
-    document.getElementById("montantRetraiteMoisRecup").innerHTML = montantMensuel;
+    document.getElementById("montantRetraiteAnnRecup1").innerHTML = montantFinal.toFixed(2);
+    document.getElementById("montantRetraiteMoisRecup1").innerHTML = montantMensuel.toFixed(2);
+    document.getElementById("montantRetraiteAnnRecup2").innerHTML = montantFinal.toFixed(2);
+    document.getElementById("montantRetraiteMoisRecup2").innerHTML = montantMensuel.toFixed(2);
 
 
 
