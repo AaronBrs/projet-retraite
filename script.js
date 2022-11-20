@@ -165,6 +165,11 @@ var sam;
 var montantFinal;
 var montantMensuel;
 
+var dateDepartTPTrim;
+var dateDepartTPAge;
+var montantPossibleTPTrim;
+var montantPossibleTPAge;
+
 function calculRetraite(){
     tabSalaireReel = [];
     tab25Salaires = [];
