@@ -170,8 +170,8 @@ function calculRetraite(){
     tab25Salaires = [];
     tabSalairesParAn = [];
     tabAnneesUniques = [];
-    nom = document.getElementById("nom");
-    prenom = document.getElementById("prenom");
+    nom = document.getElementById("nom").value;
+    prenom = document.getElementById("prenom").value;
     genre = document.querySelector('input[name="genre"]:checked').value;
     dateDeNaissance = new Date(document.getElementById("dateNaissance").value);
     trimestresTotaux = document.getElementById("nbTrimestresValides").value;
@@ -558,6 +558,62 @@ function majorationHandicap(dureeCotis, trimestresTot){
     return dureeCotis/trimestresTot*1/3;
 }
 
+function TauxPleinOuNon(dureeCotis, dateNaissance, dateRetraite){
+    if(calculTaux(dureeCotis, dateNaissance, dateRetraite) == 50){
+        return true;
+    }
+    else{
+        return false;
+    }
+    
+
+}
+
+
+function displayRecap(){
+    calculRetraite();
+    prenom = document.getElementById('prenom').value;
+    nom = document.getElementById('nom').value;
+    dateDeNaissance = new Date (document.getElementById("dateNaissance").value);
+    const formulaire = document.querySelector('.wrapper');
+    formulaire.style.display='none';
+    const recap = document.querySelector('.container');
+    recap.style.display='flex';
+    document.getElementById("prenomRecup").innerHTML = prenom;
+    document.getElementById("nomRecup").innerHTML = nom;
+    document.getElementById("dateNaissanceRecup").innerHTML = dateDeNaissance.getFullYear();
+    calculTauxPlein(dateDeNaissance);
+    document.getElementById("nbTrimestreRequisRecup").innerHTML = trimestresRequis;
+    document.getElementById("ageTauxPleinRecup").innerHTML = ageAutoTauxPlein;
+    document.getElementById("ageMinimumRecup").innerHTML = agePlusTot;
+    dureeCotis = document.getElementById("nbTrimestresValides").value;
+    dateRetraite = new Date(document.getElementById("dateRetraite").value);
+    var tauxPlein = TauxPleinOuNon(dureeCotis, dateDeNaissance, dateRetraite);
+    console.log(calculTaux(dureeCotis, dateDeNaissance, dateRetraite));
+    console.log(tauxPlein);
+
+    if(tauxPlein){
+        document.getElementById("tauxPlein").style.display = "block";
+    }
+    else{
+        document.getElementById("nonTauxPlein").style.display = "block";
+
+    }
+    var trimestresManquants = trimestresRequis - dureeCotis;
+    document.getElementById("nbTrimestreManquantRecup").innerHTML = trimestresManquants;
+    document.getElementById("montantRetraiteAnnRecup").innerHTML = montantFinal;
+    document.getElementById("montantRetraiteMoisRecup").innerHTML = montantMensuel;
+
+
+
+
+
+
+
+
+
+    
+}
 
 // tests
 //console.log(convertirFrancEuro(4000));
