@@ -580,7 +580,7 @@ function displayRecap(){
     else{
         document.getElementById("nonTauxPlein").style.display = "block";
     }
-    var trimestresManquants = trimestresRequis - dureeCotis;
+    var trimestresManquants = trimestresRequis - trimestresTotaux;
     document.getElementById("nbTrimestreManquantRecup").innerHTML = trimestresManquants;
     document.getElementById("montantRetraiteAnnRecup1").innerHTML = montantFinal.toFixed(2);
     document.getElementById("montantRetraiteMoisRecup1").innerHTML = montantMensuel.toFixed(2);
