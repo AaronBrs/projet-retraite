@@ -239,8 +239,6 @@ function calculRetraite(){
     console.log(montantFinal+"/12 = " + montantMensuel);
 }
 
-
-
 function convertirFrancEuro(salaire){
     return salaire*0.152449;
 }
@@ -251,7 +249,6 @@ function revaloriser(annee, salaire){
 
 // fonction calcul SAM : parcours de la liste -> si FRF -> conversion euro puis revalo sinon revalo directement, faire la somme
 // de tous les résultats
-
 
 function regrouperSalairesUneAnnee(){
     for(let i = 0; i < this.tabSalaires.length; i++){
@@ -277,8 +274,6 @@ function calculerSalaireReel(tabSalaires,tabUnites){
             else {
                 tabSalaireReel.push(revaloriser(parseInt(tabAnnees[i].value),this.tabPlafond.get(parseInt(tabAnnees[i].value))));
             }
-           //tabSalaireReel[i] = revaloriser(tabSalaires[i]));
-    
         }
         else if( tabUnites[i].value == "FRF"){
             var salaireConverti;
@@ -311,14 +306,10 @@ function calculerSAM(tabSalaireReel){
     for(let i=0; i < 25  ; i++ ){
         console.log(parseInt(tabTrier[i]));
         tab25Salaires.push(tabTrier[i]);
-
-        
     }
     console.log(tab25Salaires)
     return moyenne(tab25Salaires);
-
 }
-
 
 function calculTauxPlein(dateNaissance){
     console.log(dateNaissance.getFullYear());
@@ -567,16 +558,10 @@ function TauxPleinOuNon(dureeCotis, dateNaissance, dateRetraite){
     else{
         return false;
     }
-    
-
 }
-
 
 function displayRecap(){
     calculRetraite();
-    prenom = document.getElementById('prenom').value;
-    nom = document.getElementById('nom').value;
-    dateDeNaissance = new Date (document.getElementById("dateNaissance").value);
     const formulaire = document.querySelector('.wrapper');
     formulaire.style.display='none';
     const recap = document.querySelector('.container');
@@ -588,18 +573,12 @@ function displayRecap(){
     document.getElementById("nbTrimestreRequisRecup").innerHTML = trimestresRequis;
     document.getElementById("ageTauxPleinRecup").innerHTML = Math.round(ageAutoTauxPlein);
     document.getElementById("ageMinimumRecup").innerHTML = Math.round(agePlusTot);
-    dureeCotis = document.getElementById("nbTrimestresValides").value;
-    dateRetraite = new Date(document.getElementById("dateRetraite").value);
-    var tauxPlein = TauxPleinOuNon(dureeCotis, dateDeNaissance, dateRetraite);
-    console.log(calculTaux(dureeCotis, dateDeNaissance, dateRetraite));
-    console.log(tauxPlein);
-
+    var tauxPlein = TauxPleinOuNon(trimestresTotaux, dateDeNaissance, dateRetraite);
     if(tauxPlein){
         document.getElementById("tauxPlein").style.display = "block";
     }
     else{
         document.getElementById("nonTauxPlein").style.display = "block";
-
     }
     var trimestresManquants = trimestresRequis - dureeCotis;
     document.getElementById("nbTrimestreManquantRecup").innerHTML = trimestresManquants;
@@ -607,16 +586,6 @@ function displayRecap(){
     document.getElementById("montantRetraiteMoisRecup1").innerHTML = montantMensuel.toFixed(2);
     document.getElementById("montantRetraiteAnnRecup2").innerHTML = montantFinal.toFixed(2);
     document.getElementById("montantRetraiteMoisRecup2").innerHTML = montantMensuel.toFixed(2);
-
-
-
-
-
-
-
-
-
-    
 }
 
 // tests

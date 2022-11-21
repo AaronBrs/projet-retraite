@@ -318,3 +318,6 @@ body{
   width: 50%;
   justify-content: space-around;
 }
+.userDetails{
+	text-align: justify;
+}
