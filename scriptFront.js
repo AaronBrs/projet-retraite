@@ -4,10 +4,8 @@ function displayPartie2(){
     const champGenre = document.querySelector('input[name="genre"]:checked');
     const champDateNaissance = document.querySelector('#dateNaissance');
     const champDateRetraite = document.querySelector('#dateRetraite');
-
     const divNbEnfantsNes = document.getElementById('champNbEnfantsNes');
     const genre = document.querySelector('input[name="genre"]:checked').value;
-
     const divPartie2 = document.getElementById('partie2');
     const btnPartie2 = document.getElementById('btnPartie2');
     const btnPartie3 = document.getElementById('btnPartie3');
