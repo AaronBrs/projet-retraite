@@ -105,7 +105,16 @@ body{
   font-size: 24px;
 }
 .container{
-  display: none;
+  display: flex;
+  flex-direction: column;
+  margin: 50px auto;  
+  max-width: 50%;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 5px 5px 10px rgba(0,0,0,0.125);
+  padding: 30px;
+  border: 4px var(--jauneLogoAssu) solid ;
+  border-radius: 20px;
 }
 .wrapper{
   max-width: 50%;
@@ -122,7 +131,7 @@ body{
   align-items: center;
 }
 
-.wrapper .title{
+.wrapper .title, .container .title{
   font-size: 36px;
   font-weight: 700;
   color: var(--bleuLogoAssu);

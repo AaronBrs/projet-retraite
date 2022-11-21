@@ -145,6 +145,9 @@ var trimestresAv20;
 var trimestresAv16;
 var nbEnfants = 0;
 var nbEnfantsEleves = 0;
+
+
+
 var situationHandicap;
 var nbTrimestresHandicap = 0;
 var taux;
@@ -161,13 +164,18 @@ var sam;
 var montantFinal;
 var montantMensuel;
 
+var dateDepartTPTrim;
+var dateDepartTPAge;
+var montantPossibleTPTrim;
+var montantPossibleTPAge;
+
 function calculRetraite(){
     tabSalaireReel = [];
     tab25Salaires = [];
     tabSalairesParAn = [];
     tabAnneesUniques = [];
-    nom = document.getElementById("nom");
-    prenom = document.getElementById("prenom");
+    nom = document.getElementById("nom").value;
+    prenom = document.getElementById("prenom").value;
     genre = document.querySelector('input[name="genre"]:checked').value;
     dateDeNaissance = new Date(document.getElementById("dateNaissance").value);
     trimestresTotaux = document.getElementById("nbTrimestresValides").value;
@@ -176,11 +184,13 @@ function calculRetraite(){
     dateRetraite = new Date(document.getElementById("dateRetraite").value);
     nbEnfants = document.getElementById("nbEnfantsNes").value;
     nbEnfantsEleves = document.getElementById("nbEnfantsEleves").value;
+
     situationHandicap = document.getElementById('situationHandicap').checked;
     tabSalaires = document.getElementsByClassName("lesSalaires");
     tabUnites = document.getElementsByClassName("lesUnites");
     tabAnnees = document.getElementsByClassName("lesAnnees");
     calculTauxPlein(this.dateDeNaissance);
+
     console.log("Age plus tot : "+agePlusTot + ", trimestres requis : " + trimestresRequis + " ,age taux plein : " + ageAutoTauxPlein)
     if (this.trimestresAv20 > 4 || this.trimestresAv16 > 4 ){
         console.log(this.trimestresTotaux);
@@ -298,7 +308,7 @@ function calculerSAM(tabSalaireReel){
     console.log(tabSalaireReel);
     var tabTrier = tabSalaireReel.sort(function(a,b){return b-a});
     console.log(tabTrier);
-    for(let i=0; i < 5  ; i++ ){
+    for(let i=0; i < 25  ; i++ ){
         console.log(parseInt(tabTrier[i]));
         tab25Salaires.push(tabTrier[i]);
 
@@ -550,6 +560,64 @@ function majorationHandicap(dureeCotis, trimestresTot){
     return dureeCotis/trimestresTot*1/3;
 }
 
+function TauxPleinOuNon(dureeCotis, dateNaissance, dateRetraite){
+    if(calculTaux(dureeCotis, dateNaissance, dateRetraite) == 50){
+        return true;
+    }
+    else{
+        return false;
+    }
+    
+
+}
+
+
+function displayRecap(){
+    calculRetraite();
+    prenom = document.getElementById('prenom').value;
+    nom = document.getElementById('nom').value;
+    dateDeNaissance = new Date (document.getElementById("dateNaissance").value);
+    const formulaire = document.querySelector('.wrapper');
+    formulaire.style.display='none';
+    const recap = document.querySelector('.container');
+    recap.style.display='flex';
+    document.getElementById("prenomRecup").innerHTML = prenom;
+    document.getElementById("nomRecup").innerHTML = nom;
+    document.getElementById("dateNaissanceRecup").innerHTML = dateDeNaissance.getFullYear();
+    calculTauxPlein(dateDeNaissance);
+    document.getElementById("nbTrimestreRequisRecup").innerHTML = trimestresRequis;
+    document.getElementById("ageTauxPleinRecup").innerHTML = Math.round(ageAutoTauxPlein);
+    document.getElementById("ageMinimumRecup").innerHTML = Math.round(agePlusTot);
+    dureeCotis = document.getElementById("nbTrimestresValides").value;
+    dateRetraite = new Date(document.getElementById("dateRetraite").value);
+    var tauxPlein = TauxPleinOuNon(dureeCotis, dateDeNaissance, dateRetraite);
+    console.log(calculTaux(dureeCotis, dateDeNaissance, dateRetraite));
+    console.log(tauxPlein);
+
+    if(tauxPlein){
+        document.getElementById("tauxPlein").style.display = "block";
+    }
+    else{
+        document.getElementById("nonTauxPlein").style.display = "block";
+
+    }
+    var trimestresManquants = trimestresRequis - dureeCotis;
+    document.getElementById("nbTrimestreManquantRecup").innerHTML = trimestresManquants;
+    document.getElementById("montantRetraiteAnnRecup1").innerHTML = montantFinal.toFixed(2);
+    document.getElementById("montantRetraiteMoisRecup1").innerHTML = montantMensuel.toFixed(2);
+    document.getElementById("montantRetraiteAnnRecup2").innerHTML = montantFinal.toFixed(2);
+    document.getElementById("montantRetraiteMoisRecup2").innerHTML = montantMensuel.toFixed(2);
+
+
+
+
+
+
+
+
+
+    
+}
 
 // tests
 //console.log(convertirFrancEuro(4000));
