@@ -541,7 +541,7 @@ function enfantNe(nbEnfant){
 }
 
 function enfantEleve(nbEnfant){
-    this.trimestresTotaux = parseInt(this.trimestresTotaux) + parseInt(nbEnfant)*4;
+    this.trimestresTotaux = parseInt(this.trimestresTotaux) + parseInt(nbEnfant);
     if(this.trimestresTotaux > this.trimestresRequis){
         this.trimestresTotaux = this.trimestresRequis;
     }
