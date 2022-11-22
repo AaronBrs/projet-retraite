@@ -1,21 +1,18 @@
+var erreurPartie1=false
 function displayPartie2(){
-    const champNom = document.querySelector('#nom');
-    const champPrenom = document.querySelector('#prenom');
-    const champGenre = document.querySelector('input[name="genre"]:checked');
-    const champDateNaissance = document.querySelector('#dateNaissance');
-    const champDateRetraite = document.querySelector('#dateRetraite');
-    const divNbEnfantsNes = document.getElementById('champNbEnfantsNes');
-    const genre = document.querySelector('input[name="genre"]:checked').value;
-    const divPartie2 = document.getElementById('partie2');
-    const btnPartie2 = document.getElementById('btnPartie2');
-    const btnPartie3 = document.getElementById('btnPartie3');
-    if (divPartie2.style.display === 'none') {
-        divPartie2.style.display = 'block';
-        btnPartie2.style.display='none';
-        btnPartie3.style.display='block';
-    } else {
-        divPartie2.style.display = 'none';
-        btnPartie3.style.display = 'none';
+    validationPartie1()
+    if(!erreurPartie1){
+        const divPartie2 = document.getElementById('partie2');
+        const btnPartie2 = document.getElementById('btnPartie2');
+        const btnPartie3 = document.getElementById('btnPartie3');
+        if (divPartie2.style.display === 'none') {
+            divPartie2.style.display = 'block';
+            btnPartie2.style.display='none';
+            btnPartie3.style.display='block';
+        } else {
+            divPartie2.style.display = 'none';
+            btnPartie3.style.display = 'none';
+        }
     }
 }
 
@@ -46,5 +43,101 @@ function afficheChampSituationHandicap(){
         champSituationHandicap.style.display='block';
     }else{
         champSituationHandicap.style.display='none';
+    }
+}
+
+
+function validationPartie1(){
+    validationNom();
+    validationPrenom();
+    validationGenre();
+    validationDateNaissance();
+    validationDateRetraite();
+}
+function validationNom(){
+    const nomValue = document.getElementById('nom').value.trim();
+    const inputField = document.getElementById('nom').parentElement;
+    const small = inputField.querySelector('small');
+    const inputNom = inputField.querySelector('#nom')
+    if(nomValue===""){
+        small.style.display='block';
+        small.style.color='red';
+        inputNom.style.borderColor='red';
+        erreurPartie1=true
+    }
+    else{
+        small.style.display='none';
+        inputNom.style.borderColor="#FCBC04";
+        erreurPartie1=false
+    }
+}
+
+function validationPrenom(){
+    const prenomValue = document.getElementById('prenom').value.trim();
+    const inputField = document.getElementById('prenom').parentElement;
+    const small = inputField.querySelector('small');
+    const inputPrenom = inputField.querySelector('#prenom')
+    if(prenomValue===""){
+        small.style.display='block';
+        small.style.color='red';
+        inputPrenom.style.borderColor='red';
+        erreurPartie1=true
+    }
+    else{
+        small.style.display='none';
+        inputPrenom.style.borderColor="#FCBC04";
+        erreurPartie1=false
+    }
+}
+
+function validationGenre(){
+    const genre = document.querySelector('input[name="genre"]:checked');
+    const inputField = document.getElementById('lesGenres').parentElement;
+    const small = inputField.querySelector('small');
+
+    if(genre==undefined){
+        small.style.display='block';
+        small.style.color='red';
+        erreurPartie1=true
+    }
+    else{
+        small.style.display='none';
+        erreurPartie1=false
+    }
+}
+
+function validationDateNaissance(){
+    const dateNaissanceValue = document.getElementById('dateNaissance').value;
+    const inputField = document.getElementById('dateNaissance').parentElement;
+    const small = inputField.querySelector('small');
+    const inputDateNaissance = inputField.querySelector('#dateNaissance')
+    if(dateNaissanceValue==""){
+        inputDateNaissance.style.borderColor="red";
+        small.style.display='block';
+        small.style.color='red';
+        erreurPartie1=true
+    }
+    else{
+        inputDateNaissance.style.borderColor="#FCBC04";
+        small.style.display='none';
+        erreurPartie1=false
+    }
+}
+
+function validationDateRetraite(){
+    const dateRetraiteValue = document.getElementById('dateRetraite').value;
+    const inputField = document.getElementById('dateRetraite').parentElement;
+    const small = inputField.querySelector('small');
+    const inputDateRetraite = inputField.querySelector('#dateRetraite')
+    if(dateRetraiteValue==""){
+        inputDateRetraite.style.borderColor="red";
+        small.style.display='block';
+        small.style.color='red';
+        erreurPartie1=true
+    }
+    else{
+        inputDateRetraite.style.borderColor="#FCBC04";
+        small.style.display='none';
+        erreurPartie1=false
     }
 }

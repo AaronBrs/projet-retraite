@@ -10,70 +10,89 @@
             <div class="form">
                 <div id="partie1">
                     <p>Saisie des informations personnelles</p>
+
                     <div class="inputfield">
                         <label for="nom">Nom</label>
-                        <input id="nom" type="text" class="input">
+                        <input id="nom" type="text" class="input" placeholder="Dupont">
+                        <small style="display: none;">Veuillez saisir un nom !</small>
                     </div>
+
                     <div class="inputfield">
                         <label for="prenom">Prénom</label>
-                        <input id="prenom" type="text" class="input">
+                        <input id="prenom" type="text" class="input" placeholder="Bernard">
+                        <small style="display: none;">Veuillez saisir un prénom !</small>
                     </div>
+
                     <div class="inputfield">
-                        <label>Genre</label><br>
-                        <div class="lesGenres">
-                            <input type="radio" id= "genreHomme" name="genre" value="Homme">
-                            <label for="genreHomme">Homme</label><br>
+                        <label>Genre</label>
+                        <div id="lesGenres">
+                            <input type="radio" id="genreHomme" name="genre" value="Homme">
+                            <label for="genreHomme">Homme</label>
                             <input type="radio" id="genreFemme" name="genre" value="Femme">
-                            <label for="genreFemme">Femme</label><br>    
+                            <label for="genreFemme">Femme</label>
                         </div>
+                        <small style="display: none;">Veuillez renseigner votre genre !</small>
                      </div>
+
                      <div class="inputfield">
                         <label for="dateNaissance">Date de naissance</label>
                         <input id="dateNaissance" type="date" class="input">
+                        <small style="display: none;">Veuillez saisir votre date de naissance !</small>
                     </div>
+
                     <div class="inputfield">
                         <label for="dateRetraite">Date de départ à la retraite</label>
                         <input id="dateRetraite" type="date" class="input">
+                        <small style="display: none;">Veuillez renseigner votre date de départ à la retraite !</small>
                     </div>
                 </div>
+                
                 <div id="btnPartie2" onclick="displayPartie2()" class="boutonFormulaire">Suivant</div>
                 <div id="partie2" style='display: none;'>
+                    
                     <p>Saisie des informations complémentaires</p>
+
                     <div class="inputfield">
                         <label for="nbTrimestresValides">Nombre de trimestres déjà validés</label>
-                        <input id="nbTrimestresValides" name="nbTrimestresValides" type="number" class="input">
+                        <input id="nbTrimestresValides" name="nbTrimestresValides" type="number" class="input" value="0">
                     </div>
+                      
                     <div class="inputfield">
                         <label for="nbTrimestresValidesAvantAge20">Nombre de trimestres déjà validés avant 20 ans</label>
                         <input id="nbTrimestresValidesAvantAge20" name="nbTrimestresValidesAvantAge20" type="number" class="input" value="0">
                     </div>
+                    
                     <div class="inputfield">
                         <label for="nbTrimestresValidesAvantAge16">Nombre de trimestres déjà validés avant 16 ans</label>
                         <input id="nbTrimestresValidesAvantAge16" name="nbTrimestresValidesAvantAge16" type="number" class="input" value="0">
                     </div>
+                    
                     <div id="champNbEnfantsNes" class="inputfield">
                         <label for="nbEnfantsNes">Nombre d'enfants nés :</label>
                         <input type="number" id="nbEnfantsNes" name="nbEnfantsNes" class="input" value="0">
                     </div>
+                    
                     <div class="inputfield">
                         <label for="nbEnfantsEleves">Nombre de trimestres acquis au titre de l'éducation d'un enfant :</label>
                         <input type="number" id="nbEnfantsEleves" name="nbEnfantsEleves" class="input" value="0" step="4">
                     </div>
+                    
                     <div class="terms">
                         <label class="check">
-                          <input id = "situationHandicap" type="checkbox" onclick="afficheChampSituationHandicap()">
-                          <span class="checkmark"></span>
+                            <input id = "situationHandicap" type="checkbox" onclick="afficheChampSituationHandicap()">
+                            <span class="checkmark"></span>
                         </label>
-                        <div>
-                            Je suis en situation de handicap
-                        </div>
+                        <div>Je suis en situation de handicap</div>
                     </div>
+
                     <div id="champNbTrimestresHandicap" class="inputfield" style="display: none;">
                         <label for="nbTrimestresHandicap">Nombre de trimestres au titre du handicap :</label>
-                        <input type="number" id="nbTrimestresHandicap" name="nbTrimestresHandicap" class="input"><br>
+                        <input type="number" id="nbTrimestresHandicap" name="nbTrimestresHandicap" class="input">
                     </div>
                 </div>
+
                 <div id="btnPartie3" onclick="displayPartie3()" class="boutonFormulaire boutonSuivant">Suivant</div>
+                
                 <div id="partie3" style='display: none;'>
                     <p>Saisie des revenus annuels</p>
                     <table class="tableSalaires" width = "100%">
@@ -111,15 +130,18 @@
                         </tbody>
                     </table>
                 </div>
-                <div id="btnNouvelleLigne" onclick="nouvelleLigne()" class="boutonFormulaire">
-                    +
-                </div>
+    
+                <div id="btnNouvelleLigne" onclick="nouvelleLigne()" class="boutonFormulaire">+</div>
+    
             </div>
+            
             <div  class="lesBoutons">
                 <div onclick="location.href='index.html';" class="boutonFormulaire">Retour au menu</div>
                 <div onclick="displayRecap()" class="boutonFormulaire">Valider</div>
             </div>
+    
         </div>
+    
         <div class="container" style="display: none;">
             <div class="title">Récapitulatif</div>
             <div class="user-details">

@@ -312,7 +312,7 @@ body{
 .colonneUnite{
   width: 100%;
 }
-.lesGenres{
+#lesGenres{
   display: flex;
   flex-direction: row;
   width: 50%;
