@@ -279,7 +279,6 @@ function calculerSalaireReel(tabSalaires,tabUnites){
             var salaireConverti;
             if(parseInt(tabSalaires[i])<= this.tabPlafond.get(parseInt(tabAnnees[i].value))){
                 salaireConverti = convertirFrancEuro(parseInt(tabSalaires[i]));
-
             }
             else {
                 salaireConverti = convertirFrancEuro(this.tabPlafond.get(parseInt(tabAnnees[i].value)));
