@@ -205,7 +205,7 @@ function calculRetraite(){
         enfantNe(this.nbEnfants);
     }
     enfantEleve(this.nbEnfantsEleves);
-    console.log("3 Age plus tot : "+agePlusTot + ", trimestres requis : " + trimestresRequis + " ,age taux plein : " + ageAutoTauxPlein)
+    console.log("3 Age plus tot : "+ agePlusTot + ", trimestres requis : " + trimestresRequis + " ,age taux plein : " + ageAutoTauxPlein)
     if (situationHandicap){
         nbTrimestresHandicap = document.getElementById('nbTrimestresHandicap').value;
         console.log(this.trimestresTotaux)
@@ -282,7 +282,7 @@ function calculerSalaireReel(tabSalaires,tabUnites){
 
             }
             else {
-                salaireConverti = this.tabPlafond.get(parseInt(tabAnnees[i].value));
+                salaireConverti = convertirFrancEuro(this.tabPlafond.get(parseInt(tabAnnees[i].value)));
             }
             tabSalaireReel.push(revaloriser(parseInt(tabAnnees[i].value),salaireConverti));            //tabSalaireReel[i] = revaloriser(salaireConverti));
         }
