@@ -232,6 +232,9 @@ function calculRetraite(){
             montantFinal = montantTemp;
         }
     }
+    if(trimestresTotaux > trimestresRequis){
+        montantFinal = montantFinal + (trimestresTotaux-trimestresRequis) * 1.25/100 * montantFinal
+    }
     if(nbEnfants>2){
         montantFinal = montantFinal + montantFinal*10/100;
     }
